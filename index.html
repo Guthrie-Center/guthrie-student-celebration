@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Celebrating Guthrie Excellence · 2025–2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue:       #003DA5;
+    --blue-dark:  #002878;
+    --blue-light: #1a55c4;
+    --gold:       #C9A84C;
+    --gold-light: #e8c96a;
+    --cream:      #F5F7FA;
+    --white:      #ffffff;
+    --ink:        #0F1724;
+    --ink-soft:   #374151;
+    --muted:      #6B7280;
+    --border:     rgba(0,61,165,0.11);
+    --shadow-sm:  0 2px 8px rgba(0,0,0,0.06);
+    --shadow:     0 4px 24px rgba(0,61,165,0.10);
+    --r:          8px;
+    --font:       'Outfit', system-ui, sans-serif;
+    --mono:       'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font);
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO CAROUSEL ── */
+  .hero { position: relative; background: var(--blue-dark); overflow: hidden; }
+
+  .carousel { position: relative; height: 420px; overflow: hidden; }
+  .carousel-slides {
+    display: flex;
+    height: 100%;
+    transition: transform 0.65s cubic-bezier(0.77,0,0.18,1);
+    will-change: transform;
+  }
+  .carousel-slide {
+    flex: 0 0 100%;
+    height: 100%;
+    background: var(--blue-dark) center/cover no-repeat;
+    position: relative;
+  }
+  .carousel-slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,rgba(0,20,80,0.22) 0%,rgba(0,20,80,0.52) 60%,rgba(0,20,80,0.72) 100%);
+  }
+  .carousel-slide.placeholder {
+    background-color: var(--blue-dark);
+    background-image: repeating-linear-gradient(45deg,rgba(255,255,255,0.025) 0px,rgba(255,255,255,0.025) 1px,transparent 1px,transparent 14px);
+  }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(4px);
+    transition: background 0.2s;
+  }
+  .carousel-btn:hover { background: rgba(255,255,255,0.28); }
+  .carousel-btn.prev { left: 16px; }
+  .carousel-btn.next { right: 16px; }
+
+  .carousel-dots {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 6px;
+  }
+  .carousel-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.38);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    border: none; padding: 0;
+  }
+  .carousel-dot.active { background: var(--gold-light); transform: scale(1.35); }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 24px 44px;
+    pointer-events: none;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.15s ease forwards;
+  }
+  .hero-logo {
+    height: 60px; width: auto;
+    margin-bottom: 14px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.3s ease forwards;
+    filter: brightness(0) invert(1);
+  }
+  .hero h1 {
+    font-size: clamp(32px,5.5vw,64px);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.45s ease forwards;
+  }
+  .hero h1 em { font-style: normal; color: var(--gold-light); }
+  .hero-sub {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.72);
+    margin-top: 10px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.6s ease forwards;
+  }
+  .hero-rule {
+    width: 48px; height: 2px;
+    background: var(--gold);
+    margin: 20px auto 0;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.7s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(16px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  /* ── STATS BAND ── */
+  .stats-band { background: var(--blue-dark); padding: 0 40px; }
+  .stats-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; flex-wrap: wrap; justify-content: space-around;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .stat {
+    text-align: center;
+    padding: 22px 20px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    flex: 1; min-width: 110px;
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-size: 38px; font-weight: 800;
+    color: var(--gold-light);
+    line-height: 1; display: block;
+    letter-spacing: -0.03em;
+  }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 9.5px; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-top: 5px; display: block;
+  }
+
+  /* ── SEARCH ── */
+  .search-wrap {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 40px;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .search-inner { max-width: 680px; margin: 0 auto; position: relative; }
+  .search-icon {
+    position: absolute; left: 18px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--blue); font-size: 17px; pointer-events: none;
+  }
+  #search-input {
+    width: 100%;
+    padding: 13px 20px 13px 48px;
+    font-family: var(--font); font-size: 15px; font-weight: 500;
+    border: 2px solid var(--border);
+    border-radius: 50px;
+    background: var(--cream); color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  #search-input:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 4px rgba(0,61,165,0.09);
+    background: var(--white);
+  }
+  #search-input::placeholder { color: var(--muted); font-weight: 400; }
+  .search-hint {
+    text-align: center; font-size: 12px; font-weight: 500;
+    color: var(--muted); margin-top: 8px;
+    font-family: var(--mono); letter-spacing: 0.04em;
+  }
+  #search-results-panel {
+    display: none;
+    position: absolute; left: 0; right: 0; top: calc(100% + 6px);
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--r); max-height: 380px; overflow-y: auto;
+    box-shadow: var(--shadow); z-index: 200;
+  }
+  .result-item { padding: 11px 18px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+  .result-item:last-child { border-bottom: none; }
+  .result-name { font-weight: 700; font-size: 14px; color: var(--blue); }
+  .result-tags { margin-top: 5px; display: flex; flex-wrap: wrap; gap: 4px; }
+  .tag {
+    display: inline-block; padding: 2px 9px; border-radius: 20px;
+    font-family: var(--mono); font-size: 9.5px;
+    letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap;
+  }
+  .tag-cert     { background:#EEF4FF; color:#1a55c4; }
+  .tag-compete  { background:#FFF7E6; color:#92560a; }
+  .tag-lead     { background:#F0FDF4; color:#166534; }
+  .tag-honor    { background:#FDF2F8; color:#831843; }
+  .tag-national { background:#FFF3CD; color:#7c5700; border:1px solid #e8c96a; }
+  .tag-state    { background:#e8f4fd; color:#0369a1; }
+  .tag-champ    { background:var(--gold); color:var(--blue-dark); font-weight:700; }
+  .no-results   { padding:18px; text-align:center; color:var(--muted); font-size:13px; }
+
+  /* ── MAIN ── */
+  .main { max-width: 1100px; margin: 0 auto; padding: 56px 32px 80px; }
+
+  .section-label {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 6px; display: block;
+  }
+  .section-title {
+    font-size: 26px; font-weight: 800; letter-spacing: -0.02em;
+    color: var(--ink); margin-bottom: 24px;
+    padding-bottom: 16px; border-bottom: 2px solid var(--border);
+  }
+  .section-title span { color: var(--blue); }
+
+  /* ── GALLERY ── */
+  .gallery-section { margin-bottom: 64px; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
+  .gallery-grid .g-main { grid-column: span 2; grid-row: span 2; }
+  .gallery-photo {
+    background: var(--blue-dark) center/cover no-repeat;
+    border-radius: var(--r); aspect-ratio: 4/3;
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s; overflow: hidden;
+  }
+  .gallery-photo:hover { transform: scale(1.025); filter: brightness(1.08); }
+  .gallery-photo.placeholder {
+    background-color: #dce8fa;
+    background-image: repeating-linear-gradient(-45deg,rgba(0,61,165,0.04) 0px,rgba(0,61,165,0.04) 1px,transparent 1px,transparent 12px);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(0,61,165,0.3); font-family: var(--mono);
+    font-size: 10px; letter-spacing: 0.1em;
+  }
+
+  /* ── COMPACT SPOTLIGHT GRID ── */
+  .spotlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+  .spotlight-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--r); padding: 16px 18px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .spotlight-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(0,61,165,0.11);
+  }
+  .spotlight-card.gold-card {
+    border-color: var(--gold);
+    background: linear-gradient(140deg,#fffdf5 0%,#fff9e8 100%);
+  }
+  .card-icon { font-size: 22px; margin-bottom: 7px; display: block; }
+  .card-category {
+    font-family: var(--mono); font-size: 9px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 3px;
+  }
+  .card-title {
+    font-size: 13px; font-weight: 700; color: var(--ink);
+    margin-bottom: 9px; line-height: 1.35; letter-spacing: -0.01em;
+  }
+  .gold-card .card-title { color: var(--blue-dark); }
+  .name-list { list-style: none; display: flex; flex-wrap: wrap; gap: 4px; }
+  .name-list li {
+    font-size: 11.5px; font-weight: 500; color: var(--ink-soft);
+    background: rgba(0,61,165,0.06); padding: 2px 8px;
+    border-radius: 20px; line-height: 1.6;
+  }
+  .gold-card .name-list li {
+    background: rgba(201,168,76,0.18);
+    color: var(--blue-dark); font-weight: 600;
+  }
+
+  /* ── ACCORDION ── */
+  .accordion-section { margin-bottom: 48px; }
+  .accordion-item {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--r); margin-bottom: 6px;
+    overflow: hidden; box-shadow: var(--shadow-sm);
+  }
+  .accordion-header {
+    width: 100%; background: none; border: none;
+    padding: 14px 18px;
+    display: flex; align-items: center; gap: 12px;
+    cursor: pointer; text-align: left;
+    transition: background 0.15s;
+  }
+  .accordion-header:hover { background: rgba(0,61,165,0.03); }
+  .accordion-header.open { background: rgba(0,61,165,0.04); }
+  .acc-icon { font-size: 17px; flex-shrink: 0; }
+  .acc-title { font-size: 14px; font-weight: 700; color: var(--ink); flex: 1; letter-spacing: -0.01em; }
+  .acc-count {
+    font-family: var(--mono); font-size: 10px; color: var(--muted);
+    background: var(--cream); padding: 2px 10px;
+    border-radius: 20px; letter-spacing: 0.04em; white-space: nowrap;
+  }
+  .acc-chevron { color: var(--blue); font-size: 15px; transition: transform 0.2s; flex-shrink: 0; }
+  .accordion-header.open .acc-chevron { transform: rotate(180deg); }
+  .accordion-body {
+    display: none; padding: 6px 18px 18px 47px;
+    border-top: 1px solid var(--border);
+  }
+  .accordion-body.open { display: block; }
+  .acc-names { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+  .acc-name {
+    font-size: 13px; font-weight: 500;
+    padding: 4px 13px; background: var(--cream);
+    border: 1px solid var(--border); border-radius: 20px;
+    color: var(--ink-soft); line-height: 1.5;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .acc-name:hover { background: rgba(0,61,165,0.07); border-color: var(--blue); color: var(--blue); }
+
+  /* ── SCHOLARSHIPS & COLLEGES ── */
+  .scholarship-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .scholarship-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; background: var(--white);
+    border: 1px solid var(--border); border-radius: 30px;
+    font-size: 13px; font-weight: 500; box-shadow: var(--shadow-sm);
+  }
+  .scholarship-badge::before { content: '🎓'; font-size: 13px; }
+  .college-grid { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .college-pill {
+    padding: 4px 13px;
+    background: linear-gradient(135deg,#EEF4FF,#F4F8FF);
+    border: 1px solid rgba(0,61,165,0.14);
+    border-radius: 20px; font-size: 12.5px; font-weight: 500; color: var(--blue-dark);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--blue-dark); color: rgba(255,255,255,0.55);
+    text-align: center; padding: 36px 24px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+  }
+  footer img {
+    height: 34px; opacity: 0.55; display: block;
+    margin: 0 auto 14px; filter: brightness(0) invert(1);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    .carousel { height: 260px; }
+    .hero-overlay { padding-bottom: 30px; }
+    .stats-band { padding: 0 16px; }
+    .stat { min-width: 90px; padding: 16px 10px; }
+    .stat-num { font-size: 28px; }
+    .gallery-grid { grid-template-columns: repeat(2,1fr); }
+    .gallery-grid .g-main { grid-column: span 2; }
+    .main { padding: 32px 16px 60px; }
+    .search-wrap { padding: 14px 16px; }
+    .spotlight-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 420px) {
+    .spotlight-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO CAROUSEL ══
+     Replace background-image URLs with your photos (e.g. photos/photo01.jpg)
+     Add or remove <div class="carousel-slide"> blocks freely — JS handles the rest -->
+<section class="hero">
+  <div class="carousel" id="carousel">
+    <div class="carousel-slides" id="carousel-slides">
+      <div class="carousel-slide placeholder" style="background-image:url('photos/photo01.jpg')"></div>
+      <div class="carousel-slide placeholder" style="background-image:url('photos/photo02.jpg')"></div>
+      <div class="carousel-slide placeholder" style="background-image:url('photos/photo03.jpg')"></div>
+      <div class="carousel-slide placeholder" style="background-image:url('photos/photo04.jpg')"></div>
+      <div class="carousel-slide placeholder" style="background-image:url('photos/photo05.jpg')"></div>
+      <div class="carousel-slide placeholder" style="background-image:url('photos/photo06.jpg')"></div>
+      <div class="carousel-slide placeholder" style="background-image:url('photos/photo07.jpg')"></div>
+      <div class="carousel-slide placeholder" style="background-image:url('photos/photo08.jpg')"></div>
+      <div class="carousel-slide placeholder" style="background-image:url('photos/photo09.jpg')"></div>
+      <div class="carousel-slide placeholder" style="background-image:url('photos/photo10.jpg')"></div>
+      <div class="carousel-slide placeholder" style="background-image:url('photos/photo11.jpg')"></div>
+      <div class="carousel-slide placeholder" style="background-image:url('photos/photo12.jpg')"></div>
+      <div class="carousel-slide placeholder" style="background-image:url('photos/photo13.jpg')"></div>
+      <div class="carousel-slide placeholder" style="background-image:url('photos/photo14.jpg')"></div>
+      <div class="carousel-slide placeholder" style="background-image:url('photos/photo15.jpg')"></div>
+      <div class="carousel-slide placeholder" style="background-image:url('photos/photo16.jpg')"></div>
+      <div class="carousel-slide placeholder" style="background-image:url('photos/photo17.jpg')"></div>
+      <div class="carousel-slide placeholder" style="background-image:url('photos/photo18.jpg')"></div>
+      <div class="carousel-slide placeholder" style="background-image:url('photos/photo19.jpg')"></div>
+      <div class="carousel-slide placeholder" style="background-image:url('photos/photo20.jpg')"></div>
+    </div>
+    <button class="carousel-btn prev" id="carousel-prev" aria-label="Previous">&#8592;</button>
+    <button class="carousel-btn next" id="carousel-next" aria-label="Next">&#8594;</button>
+    <div class="carousel-dots" id="carousel-dots"></div>
+  </div>
+
+  <div class="hero-overlay">
+    <p class="hero-eyebrow">Harold D. Guthrie CTE Center &nbsp;·&nbsp; Spring Branch ISD &nbsp;·&nbsp; 2025–2026</p>
+    <img class="hero-logo"
+         src="https://guthriectecenter.com/wp-content/uploads/2022/08/Guthrie-Logo-White.png"
+         alt="The Guthrie Center" onerror="this.style.display='none'">
+    <h1>Celebrating <em>Guthrie Excellence</em></h1>
+    <p class="hero-sub">Honoring the students, teams, and achievements of our 2025–2026 award season</p>
+    <div class="hero-rule"></div>
+  </div>
+</section>
+
+<!-- ══ STATS BAND ── animated on scroll -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat"><span class="stat-num" data-target="641">0</span><span class="stat-label">CTSO Members</span></div>
+    <div class="stat"><span class="stat-num" data-target="120">0</span><span class="stat-label">NTHS Members</span></div>
+    <div class="stat"><span class="stat-num" data-target="100">0</span><span class="stat-label">FFA Members</span></div>
+    <div class="stat"><span class="stat-num" data-target="7">0</span><span class="stat-label">Letter Jackets</span></div>
+    <div class="stat"><span class="stat-num" data-target="60" data-suffix="+">0</span><span class="stat-label">Colleges Accepted</span></div>
+    <div class="stat"><span class="stat-num" data-target="27" data-suffix="+">0</span><span class="stat-label">Scholarships</span></div>
+  </div>
+</div>
+
+<!-- ══ SEARCH ══ -->
+<div class="search-wrap">
+  <div class="search-inner">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search-input" placeholder="Search any student name…" autocomplete="off" spellcheck="false">
+    <div id="search-results-panel"></div>
+  </div>
+  <p class="search-hint">Type a name to find all of a student's recognitions</p>
+</div>
+
+<!-- ══ MAIN ══ -->
+<main class="main">
+
+  <!-- CEREMONY GALLERY — replace URLs with real photos; best wide shot goes in .g-main -->
+  <section class="gallery-section">
+    <span class="section-label">Award Ceremony</span>
+    <h2 class="section-title">A Day to <span>Remember</span></h2>
+    <div class="gallery-grid">
+      <div class="gallery-photo g-main placeholder" style="background-image:url('photos/gallery1.jpg')"></div>
+      <div class="gallery-photo placeholder" style="background-image:url('photos/gallery2.jpg')"></div>
+      <div class="gallery-photo placeholder" style="background-image:url('photos/gallery3.jpg')"></div>
+      <div class="gallery-photo placeholder" style="background-image:url('photos/gallery4.jpg')"></div>
+      <div class="gallery-photo placeholder" style="background-image:url('photos/gallery5.jpg')"></div>
+    </div>
+  </section>
+
+  <!-- TOP HONORS -->
+  <section>
+    <span class="section-label">Top Honors</span>
+    <h2 class="section-title">State &amp; <span>National</span> Recognition</h2>
+    <div class="spotlight-grid">
+      <div class="spotlight-card gold-card">
+        <span class="card-icon">🏆</span>
+        <p class="card-category">State Champions</p>
+        <p class="card-title">FFA Ag Sales — State Champions</p>
+        <ul class="name-list">
+          <li>Elizabeth Frew</li><li>Jordyn Howell</li><li>Kinsley Binder</li><li>Lucy Esparza</li>
+        </ul>
+      </div>
+      <div class="spotlight-card gold-card">
+        <span class="card-icon">🇺🇸</span>
+        <p class="card-category">National Champions</p>
+        <p class="card-title">NJROTC Drone Team — National Champions</p>
+        <ul class="name-list">
+          <li>Daniela Chazari</li><li>Jacqueline Garcia Sanchez</li><li>Joseph Cano</li>
+          <li>Kaelan Wang</li><li>Mariana Barrero Jaramillo</li><li>Mariela Esteban</li><li>Mia Rivera</li>
+        </ul>
+      </div>
+      <div class="spotlight-card">
+        <span class="card-icon">🌟</span>
+        <p class="card-category">Competed at State</p>
+        <p class="card-title">State Competitors</p>
+        <ul class="name-list" id="state-list"></ul>
+      </div>
+      <div class="spotlight-card">
+        <span class="card-icon">🌎</span>
+        <p class="card-category">Competed Nationally</p>
+        <p class="card-title">National Competitors</p>
+        <ul class="name-list" id="national-list"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDIVIDUAL HONORS -->
+  <section style="margin-top:48px;">
+    <span class="section-label">Individual Honors</span>
+    <h2 class="section-title">Special <span>Recognitions</span></h2>
+    <div class="spotlight-grid">
+      <div class="spotlight-card">
+        <span class="card-icon">🧥</span>
+        <p class="card-category">Guthrie Letter Jackets</p>
+        <p class="card-title">Letter Jacket Recipients</p>
+        <ul class="name-list">
+          <li>Aiden Johnson</li><li>Kaelan Wang</li><li>Lydia Lane</li>
+          <li>Madison Stone</li><li>Morgan Stone</li><li>Sophia Marino</li><li>William Walsh</li>
+        </ul>
+      </div>
+      <div class="spotlight-card">
+        <span class="card-icon">🎖️</span>
+        <p class="card-category">Character Without Question</p>
+        <p class="card-title">Character Nominees</p>
+        <ul class="name-list">
+          <li>Aiden Johnson</li><li>Ashley Avilez</li><li>Claire Bernadac</li><li>Dedan Reid</li>
+          <li>Diana Villegas</li><li>Ian Archinesa</li><li>Israel Martinez</li><li>Jane McWhorter</li>
+          <li>Lillian Marino</li><li>Luke Mica</li><li>Lydia Lane</li><li>Rachel Ma</li>
+          <li>Sofia Perez</li><li>Sophia Marino</li><li>Yazmin Murillo</li>
+        </ul>
+      </div>
+      <div class="spotlight-card">
+        <span class="card-icon">⭐</span>
+        <p class="card-category">NTHS Service Cords</p>
+        <p class="card-title">National Technical Honor Society</p>
+        <ul class="name-list" id="nths-list"></ul>
+      </div>
+      <div class="spotlight-card">
+        <span class="card-icon">⚔️</span>
+        <p class="card-category">Military Path</p>
+        <p class="card-title">Students on a Military Path</p>
+        <ul class="name-list">
+          <li>Irving Julian</li><li>Raymond Garcia</li><li>Carlos Robles</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="accordion-section" style="margin-top:48px;">
+    <span class="section-label">Credentials Earned</span>
+    <h2 class="section-title">Industry <span>Certifications</span></h2>
+    <div id="cert-accordion"></div>
+  </section>
+
+  <!-- COMPETITION TEAMS -->
+  <section class="accordion-section">
+    <span class="section-label">CTSO &amp; Competition</span>
+    <h2 class="section-title">Competition <span>Teams</span></h2>
+    <div id="compete-accordion"></div>
+  </section>
+
+  <!-- LEADERSHIP -->
+  <section class="accordion-section">
+    <span class="section-label">Student Voice</span>
+    <h2 class="section-title">Leadership <span>Positions</span></h2>
+    <div id="leadership-accordion"></div>
+  </section>
+
+  <!-- SCHOLARSHIPS & COLLEGES -->
+  <section class="accordion-section">
+    <span class="section-label">College &amp; Career</span>
+    <h2 class="section-title">Scholarships &amp; <span>Colleges</span></h2>
+    <h3 style="font-size:17px;font-weight:700;letter-spacing:-0.01em;margin-bottom:10px;">Scholarships Awarded</h3>
+    <div class="scholarship-grid" id="scholarship-list"></div>
+    <h3 style="font-size:17px;font-weight:700;letter-spacing:-0.01em;margin:32px 0 10px;">Colleges &amp; Universities Accepted</h3>
+    <div class="college-grid" id="college-list"></div>
+  </section>
+
+</main>
+
+<footer>
+  <img src="https://guthriectecenter.com/wp-content/uploads/2022/08/Guthrie-Logo-White.png"
+       alt="The Guthrie Center" onerror="this.style.display='none'">
+  <p>The Guthrie Center &nbsp;·&nbsp; Spring Branch ISD &nbsp;·&nbsp; Houston, Texas</p>
+  <p style="margin-top:5px;opacity:0.45;">Celebrating Guthrie Excellence &nbsp;·&nbsp; 2025–2026</p>
+</footer>
+
+<script>
+/* ── CAROUSEL ── */
+(function(){
+  const track = document.getElementById('carousel-slides');
+  const slides = track.querySelectorAll('.carousel-slide');
+  const dotsEl = document.getElementById('carousel-dots');
+  const total = slides.length;
+  let cur = 0, timer;
+
+  slides.forEach((_,i) => {
+    const b = document.createElement('button');
+    b.className = 'carousel-dot' + (i===0?' active':'');
+    b.setAttribute('aria-label','Photo '+(i+1));
+    b.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(b);
+  });
+
+  function goTo(n) {
+    cur = (n + total) % total;
+    track.style.transform = 'translateX(-' + cur*100 + '%)';
+    dotsEl.querySelectorAll('.carousel-dot').forEach((d,i) => d.classList.toggle('active', i===cur));
+    resetTimer();
+  }
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(cur+1), 4500);
+  }
+
+  document.getElementById('carousel-prev').addEventListener('click', () => goTo(cur-1));
+  document.getElementById('carousel-next').addEventListener('click', () => goTo(cur+1));
+
+  const c = document.getElementById('carousel');
+  c.addEventListener('mouseenter', () => clearInterval(timer));
+  c.addEventListener('mouseleave', resetTimer);
+
+  let tx = 0;
+  track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 40) goTo(cur + (dx < 0 ? 1 : -1));
+  });
+
+  resetTimer();
+})();
+
+/* ── ANIMATED COUNTERS ── */
+(function(){
+  const counters = document.querySelectorAll('.stat-num[data-target]');
+  let started = false;
+  function run() {
+    if (started) return; started = true;
+    counters.forEach(el => {
+      const target = +el.dataset.target;
+      const suffix = el.dataset.suffix || '';
+      const t0 = performance.now();
+      const dur = 1400;
+      function step(now) {
+        const p = Math.min((now-t0)/dur, 1);
+        const e = 1 - Math.pow(1-p, 3);
+        el.textContent = Math.floor(e*target) + (p===1 ? suffix : '');
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }
+  const obs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) { run(); obs.disconnect(); }
+  }, {threshold:0.3});
+  obs.observe(document.querySelector('.stats-band'));
+})();
+
+/* ── DATA ── */
+const DATA = {
+  certs: [
+    {icon:'📋',title:'ACT WorkKeys',names:'Alexander Medellin,Ana Reina Velez,Anderson Villalobos Medrano,Angel Hernandez,Angel Hernandez Garcia,Annasophia Martell,Anthony Maldonado Rosa,Bernardo Martinez,Borazjani Hernandez Coreas,Bryan Garay Alvarenga,Byron Guzman,Caleb Jenkins,Caleb Reyes Juarez,Caroline Fenz,Carson Divin,Clarissa Castro,Deisy Leon,Eduardo Pena,Emiliano Castillo,Emilio Ordonez,Emily Mealey,English Chase,Eric Velazquez,Fatima Villalobos,Genesis Orozco,Henry Leon,Ismael Hilton,Ivan Martinez,Janiecy Aguilar,Jazmin Hernandez,Jesus Corea Pacheco,Jonathan Isidro,Jose Medrano,Joseph Woloson,JuanCarlos Bonilla,Karla Ramos,Kimberly Flores Morales,Kimberly Miguel Villamar,Marlon Henry,Martha Garcia,Oscar Landeros,Roger Hinojosa,Sophia Bernier,Victor Martinez Carmona,Victoria Antonio,Ziggy Armstrong'},
+    {icon:'🎬',title:'Adobe Certified Professional – Digital Video',names:'Alisa Hakalenko,Churchill Chong,Liam Brader,Luis Martinez,Mina Kaczenski,Sebastian Mendoza'},
+    {icon:'🖥️',title:'Autodesk 3Ds Max',names:'Aubrielle Gomez,Damian Ramirez,Dylan Perez,Eli Chapa,Hayden Le'},
+    {icon:'📐',title:'Autodesk AutoCAD Certified User',names:'Aaliyah Castillo,Addison Teixeira,Andrew Davidow,Christian Reyes-Torres,Hudson Getty,Jonathan Ruiz,Kensy Hernandez,Mariam Pirela,Moises Hernandez-Campos,Nicholas Massad,Sakino Kitaoka,Samuel Murphree,Sofia Perez'},
+    {icon:'🏛️',title:'Autodesk REVIT Certified User',names:'Addison Teixeira,Andrew Davidow,Heyi Shen,Julio Rivera,Nicolas Schoenhofer,Sakino Kitaoka,Samuel Murphree,Sofia Perez,William Walsh'},
+    {icon:'❤️',title:'Basic Life Support (BLS)',names:'Entire Health Science Theory Classes'},
+    {icon:'🩺',title:'CCMA Certified Clinical Medical Assistant',names:'Alana Le,Allison Limon,Alyssa Vichayanond,Amari Lewis,Ana Franco,Ana Soto,Angeline Padilla,Aniyah Cunningham,Arshan Amini,Ashley Neiman Garcia,Avery Fang,Avery Levins,Aydan Hagler,Aysha Hollins,Bisma Khalid,Brenda Ortega Carmona,Delilah Segura,Deziree Oliver,Dylan Zhou,Elijah Chon,Elizabeth Butler,Eric Liu,Gabriel Ibarra,Gabriel Valdez,Gavin Rump,Gissell Ramirez,Hailey Shaffer,Jaedynce Prince,James Key,Jaquelyn Muniz,Jasmine Nguyen,Jenedid Hernandez Bravo,Jessica Mata,Jina Suk,Joshlyn Rodriguez Montoya,Juany Razo,Julissa Dolores,Kaileigh Vargas,Katie Dangelas,Leslie Campana,Liam Otiniano-Hammer,Lujain Elshabi,Madison Blaschke,Madison Gardner,Madison Williams,Minh Truong,Nathalie Hernandez Bautista,Paula Razo,Rachel Ma,Sophia Yannuzzi,Tyler Elliott,Worood Shabek,Yaretzi Ramirez,Zalaa Baryalai,Ziena Chukwuemeka-Njoku'},
+    {icon:'💉',title:'CCMA Medical Assistant',names:'Ainsley Pine,Alyssa Vichayanond,Ana Franco,Andrea Perez,Anthony Alvarado,Ashley Neiman Garcia,Ava Montemayor,Catherine Daly,Cheyenne Pham,Daniel Jo,Deanna Lindsay,Dylan Gobin,Elijah Chon,Emily Maldonado,Emma Eaves,Gavin Nguyen,Gavin Rump,Georgia Dickey,Hailey Shaffer,Isabela Arguelles,Jacqueline Herrera,James Key,Jaquelyn Muniz,Javier Ponce Suarez,Jaycee Wright,Jazlyn Jones Dena,Jennifer Bretones Aguilar,Jessica Mata,Johanna Isbell,Juany Razo,Julissa Dolores,Kristiana Ofoma,Lillian Wu,Maddox Pham,Mia Robles,Mia Robles Silva,Nathalie Hernandez,Sage Biehl,Sama Alshawa,Sareem Islam,Sofia Aguilar Cabrera,Sofia J. Aguilar,Trysta Truong,Vianna Garcia,Worood Shabek,Ximena Tapia,Zoe Lawless'},
+    {icon:'🌐',title:'Cisco CCNA Certification',names:'Diego Lara'},
+    {icon:'💻',title:'CompTIA A+',names:'Sam Uong'},
+    {icon:'🔒',title:'CompTIA Network+',names:'Arta Ghanbari,Braden Oliphant,Brady Bernier,Cormac Steranko,Dianne Lopez,Diego Lara,Duncan McCluskey,Emmanuel Oyenuga,Jason Hargrove,Jose Mejia,Najar Mohamed,Nolan Tran,Oliver Burk,Reagan Hewston,Ryan Scott,Ryleigh Dickerson'},
+    {icon:'🛡️',title:'CompTIA Security+',names:'Arta Ghanbari,Brady Bernier,Dianne Lopez,Diego Lara,Jimmy Escobar,Najar Mohamed,Ryan Scott,Sam Uong'},
+    {icon:'🦷',title:'Dental Assisting',names:'Aydan Jolie Hagler,Kasra Jalali Ghombavani'},
+    {icon:'🐾',title:'Elanco Veterinary Medical Applications',names:'Abby Schroeter,Abigail Wilson,Camey Dunavin,Claire Bernadac,Elvis Zarco,Emily Valicek,Jake Duggan,McKinney Musgrave,Ophylia Luu,Quinn Hopper,Reese Tilton'},
+    {icon:'🚁',title:'FAA Part 107 Drone License',names:'Ryenne Kohler'},
+    {icon:'🔧',title:'Google IT Support Professional',names:'Abiel Tristan,Aiden Lane,Benton Denman,Cristopher Espitia,Eric Salgado,Micah Sotuyo,Rylan Garza,William Davison'},
+    {icon:'⚡',title:'HCC Level 1 Commercial Electrical Helper & OSHA 30',names:'Aiden Patel,Aiden Wheeler,Alberto Simon-Chavez,Ana Rodriguez Carbajal,Angela B. Perez,Antonio Reynolds,Brayan Garcia Sanchez,Dulce M. Yanes,Eduviges Centeno,Emely Solis Galeno,Eric Michaud,Fardin Ansari,Fatima Gallegos,Fidel Arzate,Gabriela M. Perez,Guadalupe Rodriguez,Havid Castillo Alvarez,Hector Urbina Saucedo,Jaden Guzman,Javier Guillen Gomez,Jimy Diaz Caballero,Jocelyn L. Ramon,Josue Gudino Hernandez,Kevin Morales,Khristian Aguilar,Leonardo Mariscal,Logan Joffrion,Marcos Reyes Rodriguez,Maria Ostiguin-Campos,Mario Alvarado Quinonez,Mark Polanco,Matthew Medina,Milagros Sagal,Mynor Cano Garcia,N\'Korey Smith,Nelson Valeriano Rivera,Omar Cenobio Cenobio,Ricardo Maldonado,Ricardo Ortega,Samuel Hernandez,Santiago Perez,Sergio Andrade Paz,Stephen Hoover,Thalia Penton Del Monte,Wilmer Orellana Nataren'},
+    {icon:'🐴',title:'NHJCA Equine Management & Evaluation',names:'Aniston Ennis,Axel Boren,Aylin Delgado Reyes,Belkis Ordonez,Benjamin Porter,Camilla Avila,Colton Coan,Crystal Quiroz,Elizabeth Frew,Emily Torres Ramirez,Emma Deneke,Ester Martinez,Gabriel Galmiche,Hawra Alquwaisim,Jake Burney,Jasmyne Valecillos,Jason Rodriguez,Jason Truong,Jordyn Howell,Karen Damian,Keller Parr,Kinsley Binder,Kolton Brod,Lilia Beck,Lucy Esparza,Marcelo Suarez Prada,Margarita Miguel,Melanie Martinez,Melody Cedillo,Mia Martinez,Mirah Tlass,Olmer Flores,Pearl Antel,Pierce Faludi,Ross Mandery,Sofia Ford'},
+    {icon:'🏗️',title:'OSHA 10',names:'Abraham Gomez,Adan Hernandez,Alan Isidoro,Alexis Arzate,Alexis Garcia,Alexis Saldana,Angel Hernandez,Brenden Moore,Brian Mendez,Bruce Andrade,Cameron Gilford,Christofer Figueroa-Anaya,Christopher Osorio,Cristian Lara Sandoval,Daniel Pinones,David Cabello Mena,Diego Cruz,Edbert Ramos Diaz,Edgar Martinez,Eduardo Garcia,Edy Garcia Cedillo,Elias Joya,Emilio Melgar,Esgar Sarmiento Martinez,Esvin Leiva Aguirre,Fernando De Leon,Gavin Trevino,Hector Aguilar Hernandez,Henry Monge,Isaac Sanchez,Jacob Garza,James Goodrich,Jason Luis-Rocha,Jayden Khemlani,Jerry Garcia,Jonathan Perez-Acuna,Joshua Hernandez,Joshwa Mendez,Juan Bueno,Juan Martinez,Pablo Garcia,Paulo Patino Hernandez,Rafael Francia,Ramon Roque-Godinez,Ramy Romero Fuentes,Ricardo Escamilla Bustillos,Ricardo Hernandez,Ryan Wu,Saul Gonzalez Valdez,Sebastian Vallejo,Victor Cedillo,Wilfredo Galeano Argueta'},
+    {icon:'🩸',title:'Patient Care Technician & Phlebotomy Technician',names:'Alaina R. Moore,Alexa Guadarrama,Allison Benavidez Flores,Amelie Bustamante Castillo,Andre R. Dart,Ariana Ochoa,Arianna M. Giron,Ava M. Kennard,Brenna R. Laderer,Caroline R. Heinecke,Christopher A. Marquina,Clara M. Mello,Destiny Castellanos Martinez,Elizabeth A. Brauchle,Emely Solis Galeno,Emmie N. Hanvey,Erick I. Aguilar,Ian U. Arciniega,Isabella L. Lopez,Jocelyn Ramon,Karli N. De Anda,Leena J. Miller,Luke M. Mica,Maria C. Guevara,Maria Diaz,Mia A. Lopez Valdivia,Milagros Sagal,Paula M. Almaraz,Poleth D. Garcia,Rosalinda S Bravo,Ruben Orduna Cortes,Ruby Lopez-Millan,Siany Gonzalez Trana,Sindy Coreas,Sofia Flores,Sonia Ipina'},
+    {icon:'💊',title:'Pharmacy Technician',names:'Camilo Chamorro,Emalie Huynh,Genesis Mejia,Gerald Anaya,Laura Gonzalez,Madison Dede,Mariana Medrano,Soraya Maram,Thomas Clark,Trung Nguyen'},
+    {icon:'🍽️',title:'ServSafe Food Managers',names:'Alyssa Lopez,Amanda Rodriguez,Anthony Saravia,Avery Graham,Bien Rowel Almario,Carmen Guerra,Charles Podzemny,Christian Garcia,Christopher Ramirez,Cristian Torres,David Mata,Emmanuel Mojica,Estefania Prado,Francisco Olvera,Hunter Curry,Ivan Ruiz Torres,Jacob Anderson,Jayson Trevino,Kerlyn Meza Lainez,Leland Langlois,Michael Javaherian,Natan Matteoni,Marcos Poet Brown,Rodney Vidal,Sharon Ramirez'},
+    {icon:'🌸',title:'Texas Florists Knowledge-Based Certification (Group 1)',names:'Alixon Rivas,Helen Zukley,Jenna El Hosseiny,Kaleb Bernat,Kyle Gray,Luca Paullo,Mackenzie Hernandez-Alaffita,Mariah Pesina,Scarlett Glazner,Thomas Bowling'},
+    {icon:'🌸',title:'Texas Florists Knowledge-Based Certification (Group 2)',names:'Abigail Clark,Andrea Guillen,Astri Kimberli Tiul Jom,Elena Lonsford,Emma Rodriguez,Fatima Flores,Garrett Green,Heidi Urbina,Isabela Cabrera,Jason Lopez,Karina Reyes Caranza,Luke Sherrill,Mitzi Martinez,Seojin Park,Xunaxhi Luis,Yazmyn Villasana'},
+  ],
+  competitions: [
+    {icon:'🏛️',title:'A4LE – Association for Learning Environments (National)',names:'Christian Reyes-Torres,Heyi Shen,Kensy Hernandez,Nicholas Massad,Nicolas Schoenhofer,William Walsh'},
+    {icon:'🌾',title:'Ag Advocacy',names:'Elizabeth Frew,Kinsley Binder,Lucy Esparza'},
+    {icon:'💼',title:'Ag Sales',names:'Elizabeth Frew,Jordyn Howell,Kinsley Binder,Lucy Esparza'},
+    {icon:'📡',title:'Ag Tech & Communications',names:'Claire Bernadac'},
+    {icon:'📰',title:'Area LDE Public Relations',names:'Abigail Clark,Elena Lonsford'},
+    {icon:'🎤',title:'Area LDE Skills Demonstration',names:'Luke Sherrill'},
+    {icon:'❓',title:'Chapter Quiz',names:'Emerson Bryant,Jina Park,Jina Suk,Kenzie Bates'},
+    {icon:'🦋',title:'Entomology',names:'Abigail Clark,Elena Lonsford,Jina Park,Wendy Gomez'},
+    {icon:'📊',title:'Farm Business Management',names:'Abigail Wilson,Claire Bernadac,Clark Ortega,Elizabeth Christy,Marcelo Suarez Prada'},
+    {icon:'🌺',title:'Floriculture',names:'Claire Bernadac,Kenzie Bates'},
+    {icon:'🐄',title:'Livestock Judging',names:'Addison Hudson,Ayla Klein,Bella Bernat,Kinsley Binder,Lucy Esparza,Samantha Hayes'},
+    {icon:'🥛',title:'Milk Quality',names:'Addison Young,Garrett Green,Luke Sherrill'},
+    {icon:'📚',title:'NJROTC National Academic Exam',names:'Ashley Vallecillo Aguilar,Avery Meyers,Clark McWhorter,Irmenia Robau,Joohyuk Park,Joseph Cano,Karen Teyuca,Logan Mares,Mariela Esteban,Mia Rivera,Natan Orellana Diaz,Ryenne Kohler,Sasha Robau,Valeria Sabogal Parada,Vilius Bagdzevicius'},
+    {icon:'🚁',title:'NJROTC Drone Team – Coding, Airmanship, Communications',names:'Avery Meyers,Eileen Angel Sanchez,Joohyuk Park,Sophia Marino,Vilius Bagdzevicius'},
+    {icon:'🎖️',title:'NJROTC Competition Team',names:'Anthony Modesto,Camron Bogan,Daniela Chazari,Elihu Down,Guillermo Hernandez,Jacqueline Garcia Sanchez,Jaden Aviles,Joseph Cano,Kaelan Wang,Karla Osorio,Madison Griffin,Mariana Barrero Jaramillo,Mariela Esteban,Mason Davis,Mia Rivera,Robin Mero Sornoza'},
+    {icon:'🐔',title:'Poultry',names:'Ashley Panjoj,Elise Bernadac,Gage Schissler,Jules Houston,Vivienne Verret'},
+    {icon:'🌿',title:'Plant Science',names:'Elise Bernadac'},
+    {icon:'🚔',title:'Police Explorers Competition',names:'Giovanni Ramirez,Jadin Garcia'},
+    {icon:'📣',title:'Public Relations',names:'Abigail Clark,Elena Lonsford,Emily Valicek,Jordyn Howell'},
+    {icon:'🎙️',title:'Public Speaker',names:'Claire Bernadac,Elise Bernadac,Emily Valicek'},
+    {icon:'📻',title:'Radio Broadcasting',names:'Ashley Panjoj,Bella Bernat,Gage Schissler'},
+    {icon:'✂️',title:'SkillsUSA Cosmetology',names:'Evelyn Archundia,Liliana Reyes,Malia Madrill,Mitzel Guerrero,Valeria Ortiz,Valerie Oliveros,Samantha Ortiz,Tatiana Reyes'},
+    {icon:'👨‍🍳',title:'SkillsUSA Culinary',names:'Ayden Liles,Jayvion Wilson,Lydia Lane,Madison Stone,Morgan Stone,Sierra Morales,Vincent Detamore,Vincent McGuire'},
+    {icon:'🎥',title:'SkillsUSA Filmmaking',names:'Alisa Hakalenko,Braelyn Bautista,Brighitte Gatica,Churchill Chong,Jose Del Pino Brizuela,Liam Brader,Luis Martinez,Mariam Khan,Mina Kaczenski,Sebastian Mendoza,Xavier Alexander'},
+    {icon:'🩺',title:'SkillsUSA Health Science',names:'Ava Kennard,Caroline Heinecke,Guadalupe Rodriguez Esteban'},
+    {icon:'🏛️',title:'TxA Architects',names:'Aaliyah Castillo,Andrew Davidow,Christian Reyes-Torres,Heyi Shen,Hudson Getty,Jonathan Ruiz,Julio Rivera,Kensy Hernandez,Mariam Pirela,Moises Hernandez-Campos,Nahomi Hernandez Velasquez,Nicholas Massad,Nickolas Rowland,Nicolas Schoenhofer,Rafael Cordero,Sakino Kitaoka,Sofia Perez,Wilbeicys Aguilar Castellanos,William Walsh'},
+    {icon:'🐕',title:'Vet Science (Group 1)',names:'Arabella Harris,Margarita Miguel,Isabella Bentancur,Vicky Guillen'},
+    {icon:'🐕',title:'Vet Science (Group 2)',names:'Abby Schroeter,Addison Knape,Ashley Panjoj,Benton Byrd,Ophylia Luu,Raina Brooks,Sylvia Castaneda'},
+  ],
+  leadership: [
+    {icon:'🌾',title:'FFA Officers',names:'Abigail Clark (President & Lake Houston Pres),Charlotte Moore,Claire Bernadac,Elise Bernadac,Emily Valicek,Gage Schissler,Kenzie Bates,Lola Pooler,Quinn Hopper'},
+    {icon:'🎖️',title:'NJROTC Leadership Team',names:'Adolfo Tapia Alvarado,Carsten Morford,Jane McWhorter,Joohyuk Park,Joseph Cano,Kaelan Wang,Ryan McIntire,Sophia Marino,Vilius Bagdzevicius'},
+    {icon:'⭐',title:'NTHS Officers',names:'Brenna Laderer,Carsten Morford,Genesis Mejia,Sakino Kitaoka,Vilius Bagdzevicius'},
+    {icon:'✂️',title:'SkillsUSA Cosmetology Officers',names:'Mitzel Guerrero,Samantha Ortiz,Tatiana Reyes'},
+    {icon:'👨‍🍳',title:'SkillsUSA Culinary Officers',names:'Lydia Lane,Madison Stone,Morgan Stone'},
+    {icon:'🎥',title:'SkillsUSA Filmmaking Officers',names:'Sebastian Mendoza,Liam Brader,Alisa Hakalenko'},
+    {icon:'🎓',title:'Tarleton Ag Business Cords',names:'Clark Ortega,Elizabeth Christy,Gage Schissler,Grace Smith,Kaylee Johnson,Kenzie Bates,Kyle Ingersoll,Natalie Enriquez,Shayleigh Thomas,William Dudley,Zoe Yan'},
+    {icon:'💼',title:'Paid SBISD Interns',names:'Israel Martinez'},
+    {icon:'🏛️',title:'CTSO Ambassador for FFA',names:'Elise Bernadac'},
+  ],
+  state:'Aaliyah Castillo,Abigail Clark,Alisa Hakalenko,Andrew Davidow,Christian Reyes-Torres,Churchill Chong,Elena Lonsford,Heyi Shen,Hudson Getty,Jazz Collymore,Jeremy Garcia-Cortez,Jonathan Ruiz,Jose Del Pino Brizuela,Julio Rivera,Kensy Hernandez,Lydia Lane,Madison Stone,Mariam Khan,Mariam Pirela,Michael Javerian,Mitzel Guerrero,Moises Hernandez-Campos,Morgan Stone,Nahomi Hernandez Velasquez,Nicholas Massad,Nickolas Rowland,Nicolas Schoenhofer,Rafael Cordero,Sakino Kitaoka,Samantha Ortiz,Sebastian Mendoza,Seojin Park,Sofia Perez,Tatiana Reyes,Vincent McGuire,Wendy Gomez,Wilbeicys Aguilar Castellanos,Xavier Alexander',
+  national:'Ashley Vallecillo Aguilar,Avery Meyers,Christian Reyes-Torres,Clark McWhorter,Colin Rancoll Canova,Corbin McCalmont,Heyi Shen,Irmenia Robau,Joohyuk Park,Julio Rivera,Karen Teyuca,Kensy Hernandez,Logan Mares,Natan Orellana Diaz,Nicholas Massad,Nicolas Schoenhofer,Ryenne Kohler,Sasha Robau,Sophia Marino,Valeria Sabogal Parada,Vilius Bagdzevicius,William Walsh,Xavier Alexander',
+  nths:'Addison Teixeira,Andrew Davidow,Ariana Ochoa,Arianna Giron,Brenna Laderer,Carsten Morford,Elena Lonsford,Emily Mealey,Emily Valicek,Emmie Hanvey,Genesis Mejia,Hailey Shaffer,Jane McWhorter,Janelle Rodriguez,Jennifer Campo,Jina Park,Kensy Hernandez,Kimberly Flores Morales,Logan Joffrion,Abigail Clark,Mariam Pirela,Martha Garcia,Mia Robles Silva,Monserrat Mendoza-Figueroa,Nicolas Schoenhofer,Paula Almaraz,Paulina Cop Sanchez,Sakino Kitaoka,Sofia Perez,Trace Murphree,Vilius Bagdzevicius,Vincent McGuire,William Walsh',
+  scholarships:'ACE,CITGO,CITGO Scholarship,Embry-Riddle Aeronautical University,Emerson College,Houston Livestock Show and Rodeo,Jacksonville University,Jason Roberts Scholarship,Louisiana Tech,Mary Boyce,Meadow Wood PTA Scholarship,Michael G. Meyers,Navy Academy Prep – Full Ride,Navy ROTC – Full Ride,Pratt,Reyes Simms Award,SCAD,School Art Auction,Spring Branch Education Foundation,Spring Branch Education Foundation Scholarship,University of Texas,University of Houston,University of Oklahoma,US Army ROTC Scholarship,Utah State University Merit Scholarship,We Go Public,Youth Auction',
+  colleges:'Auburn University,Auguste Escoffier School of Culinary Arts,Colorado University–Denver,Dallas College,Greensville University,Houston Christian University,Houston City College,Johnson and Wales University,Lone Star College,LSU,Montana State University,Northwestern University,Pratt Institute,Purdue University,Regis University,RPI,Sam Houston State University,SCAD,Sofia University St. Kliment Ohridski,Southern Adventist University,Southern Methodist University,Southwestern University,Stephen F. Austin University,Syracuse University,Texas A&M San Antonio,Texas A&M University,Texas Christian University,Texas State University,University of Arkansas,University of Connecticut,University of Houston,University of Houston Downtown,University of Mississippi,University of New Mexico,University of Oklahoma,University of Oregon,University of Pittsburgh,University of St. Thomas,University of Tennessee,UT Arlington,UT Austin,UT Dallas,UT El Paso,UT San Antonio,Utah State University,Virginia Tech,William Jewell',
+};
+
+/* ── SEARCH INDEX ── */
+const idx = {};
+function add(name, category, tag, cls) {
+  const k = name.trim().toLowerCase();
+  if (!k || k.length < 2) return;
+  if (!idx[k]) idx[k] = {display:name.trim(), achievements:[]};
+  if (!idx[k].achievements.some(a => a.tag===tag)) idx[k].achievements.push({category,tag,cls});
+}
+DATA.certs.forEach(c => c.names.split(',').forEach(n => add(n,'Certification',c.title,'tag-cert')));
+DATA.competitions.forEach(c => c.names.split(',').forEach(n => add(n,'Competition',c.title,'tag-compete')));
+DATA.leadership.forEach(c => c.names.split(',').forEach(n => add(n,'Leadership',c.title,'tag-lead')));
+DATA.state.split(',').forEach(n => add(n,'State','State Competitor','tag-state'));
+DATA.national.split(',').forEach(n => add(n,'National','National Competitor','tag-national'));
+['Aiden Johnson','Kaelan Wang','Lydia Lane','Madison Stone','Morgan Stone','Sophia Marino','William Walsh']
+  .forEach(n => add(n,'Honor','Letter Jacket','tag-honor'));
+DATA.nths.split(',').forEach(n => add(n,'Honor','NTHS Cord','tag-honor'));
+['Elizabeth Frew','Jordyn Howell','Kinsley Binder','Lucy Esparza']
+  .forEach(n => add(n,'🏆 Champion','Ag Sales State Champ','tag-champ'));
+['Daniela Chazari','Jacqueline Garcia Sanchez','Joseph Cano','Kaelan Wang','Mariana Barrero Jaramillo','Mariela Esteban','Mia Rivera']
+  .forEach(n => add(n,'🇺🇸 Champion','NJROTC Drone Nat\'l Champ','tag-champ'));
+
+const inp = document.getElementById('search-input');
+const panel = document.getElementById('search-results-panel');
+inp.addEventListener('input', function(){
+  const q = this.value.trim().toLowerCase();
+  if (q.length < 2) { panel.style.display='none'; return; }
+  const hits = Object.entries(idx)
+    .filter(([k]) => k.includes(q))
+    .sort(([a],[b]) => (a.startsWith(q)?0:1)-(b.startsWith(q)?0:1) || a.localeCompare(b))
+    .slice(0,25);
+  panel.innerHTML = hits.length === 0
+    ? `<div class="no-results">No students found for "<strong>${this.value}</strong>"</div>`
+    : hits.map(([,s]) => `<div class="result-item">
+        <div class="result-name">${s.display}</div>
+        <div class="result-tags">${s.achievements.map(a=>`<span class="tag ${a.cls}">${a.tag}</span>`).join('')}</div>
+      </div>`).join('');
+  panel.style.display = 'block';
+});
+document.addEventListener('click', e => { if (!e.target.closest('.search-inner')) panel.style.display='none'; });
+
+/* ── ACCORDIONS ── */
+function buildAccordion(id, items) {
+  const el = document.getElementById(id);
+  items.forEach(item => {
+    const names = item.names.split(',').map(n=>n.trim()).filter(Boolean);
+    const d = document.createElement('div');
+    d.className = 'accordion-item';
+    d.innerHTML = `
+      <button class="accordion-header" onclick="toggleAcc(this)">
+        <span class="acc-icon">${item.icon}</span>
+        <span class="acc-title">${item.title}</span>
+        <span class="acc-count">${names.length} student${names.length!==1?'s':''}</span>
+        <span class="acc-chevron">▾</span>
+      </button>
+      <div class="accordion-body">
+        <div class="acc-names">${names.map(n=>`<span class="acc-name">${n}</span>`).join('')}</div>
+      </div>`;
+    el.appendChild(d);
+  });
+}
+function toggleAcc(btn) {
+  const body = btn.nextElementSibling;
+  const open = body.classList.contains('open');
+  btn.classList.toggle('open',!open); body.classList.toggle('open',!open);
+}
+buildAccordion('cert-accordion', DATA.certs);
+buildAccordion('compete-accordion', DATA.competitions);
+buildAccordion('leadership-accordion', DATA.leadership);
+
+/* ── STATIC LISTS ── */
+function fillList(id, csv) {
+  const el = document.getElementById(id); if (!el) return;
+  csv.split(',').forEach(n => { const li=document.createElement('li'); li.textContent=n.trim(); el.appendChild(li); });
+}
+fillList('state-list', DATA.state);
+fillList('national-list', DATA.national);
+fillList('nths-list', DATA.nths);
+
+function fillBadges(id, csv, cls) {
+  const el = document.getElementById(id); if (!el) return;
+  csv.split(',').forEach(n => { const s=document.createElement('span'); s.className=cls; s.textContent=n.trim(); el.appendChild(s); });
+}
+fillBadges('scholarship-list', DATA.scholarships, 'scholarship-badge');
+fillBadges('college-list', DATA.colleges, 'college-pill');
+</script>
+</body>
+</html>
