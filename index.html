@@ -40,7 +40,7 @@
   /* ── HERO CAROUSEL ── */
   .hero { position: relative; background: var(--blue-dark); overflow: hidden; }
 
-  .carousel { position: relative; height: 420px; overflow: hidden; }
+  .carousel { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; }
   .carousel-slides {
     display: flex;
     height: 100%;
@@ -398,7 +398,7 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 680px) {
-    .carousel { height: 260px; }
+    .carousel { aspect-ratio: 16/9; }
     .hero-overlay { padding-bottom: 30px; }
     .stats-band { padding: 0 16px; }
     .stat { min-width: 90px; padding: 16px 10px; }
