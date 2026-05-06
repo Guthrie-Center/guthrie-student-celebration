@@ -314,14 +314,11 @@
   }
   .wide-card { width: 100%; }
   .name-list-cols {
-    column-count: 3;
-    column-gap: 8px;
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
   }
   .name-list-cols li {
-    display: inline-block;
-    width: 100%;
-    margin-bottom: 4px;
     font-size: 11.5px;
     font-weight: 500;
     color: var(--ink-soft);
@@ -329,7 +326,6 @@
     padding: 2px 8px;
     border-radius: 20px;
     line-height: 1.6;
-    break-inside: avoid;
   }
 
   /* ── COMPACT SPOTLIGHT GRID ── */
@@ -465,7 +461,6 @@
     .main { padding: 32px 16px 60px; }
     .search-wrap { padding: 14px 16px; }
     .champ-row, .competitor-row { grid-template-columns: 1fr; }
-    .name-list-cols { column-count: 2; }
     .accordion-cols { grid-template-columns: 1fr; }
     .spotlight-grid { grid-template-columns: 1fr 1fr; }
     .spotlight-card { align-self: start; }
