@@ -777,44 +777,41 @@
 
   /* ── RESPONSIVE ── */
 
-  /* Tablet — 2 columns for spotlight, competitor row stacks */
   @media (max-width: 900px) {
+    .spotlight-grid { columns: 3; }
     .competitor-row { grid-template-columns: 1fr 1fr; }
     .competitor-row .spotlight-card:last-child { grid-column: span 2; }
-    .spotlight-grid { columns: 3; }
   }
 
-  /* Large phone / small tablet */
   @media (max-width: 680px) {
     .carousel { aspect-ratio: 16/9; }
-    .hero-overlay { padding-bottom: 30px; }
-    .stats-band { padding: 0 8px; }
-    .stats-inner { flex-wrap: nowrap; }
-    .stat { min-width: 0; flex: 1; padding: 14px 4px; }
-    .stat-num { font-size: 22px; }
-    .stat-label { font-size: 8px; letter-spacing: 0.06em; }
-    .main { padding: 32px 16px 60px; }
+    .main { padding: 24px 12px 60px; }
     .search-wrap { padding: 14px 16px; }
     .champ-row { grid-template-columns: 1fr 1fr; }
     .competitor-row { grid-template-columns: 1fr; }
     .competitor-row .spotlight-card:last-child { grid-column: span 1; }
     .accordion-cols { grid-template-columns: 1fr; }
     .spotlight-grid { columns: 2; }
-    .spotlight-card { min-width: unset; max-width: unset; }
     .hero-bottom { display: none; }
     .hero-logo { display: none; }
     .hero-eyebrow { display: none; }
     .hero-mobile-title { display: block; }
     .hero-overlay { padding: 16px; justify-content: flex-start; }
+    /* Stats — keep single row but smaller */
+    .stats-band { padding: 0 4px; }
+    .stats-inner { flex-wrap: nowrap; }
+    .stat { min-width: 0; flex: 1; padding: 12px 2px; }
+    .stat-num { font-size: 20px; }
+    .stat-label { font-size: 7.5px; letter-spacing: 0.04em; }
   }
 
-  /* Phone */
-  @media (max-width: 480px) {
+  @media (max-width: 500px) {
     .champ-row { grid-template-columns: 1fr; }
     .spotlight-grid { columns: 1; }
+    /* Stats wrap to 3x2 grid on very small screens */
     .stats-inner { flex-wrap: wrap; }
-    .stat { min-width: 33%; padding: 12px 6px; }
-    .stat-num { font-size: 26px; }
+    .stat { min-width: 33.33%; flex: 0 0 33.33%; padding: 14px 8px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .stat-num { font-size: 28px; }
     .stat-label { font-size: 9px; }
   }
 </style>
@@ -1013,6 +1010,27 @@
           <li>Clark Ortega</li><li>Elizabeth Christy</li><li>Gage Schissler</li><li>Grace Smith</li>
           <li>Kaylee Johnson</li><li>Kenzie Bates</li><li>Kyle Ingersoll</li><li>Natalie Enriquez</li>
           <li>Shayleigh Thomas</li><li>William Dudley</li><li>Zoe Yan</li>
+        </ul>
+      </div>
+      <div class="spotlight-card">
+        <span class="card-icon">⚡</span>
+        <p class="card-category">Houston City College</p>
+        <p class="card-title">Commercial Electrician Helper — Level 1 Certificate</p>
+        <ul class="name-list">
+          <li>Aiden Patel</li><li>Aiden Wheeler</li><li>Alberto Simon-Chavez</li><li>Ana Rodriguez Carbajal</li>
+          <li>Angela B. Perez</li><li>Antonio Reynolds</li><li>Brayan Garcia Sanchez</li><li>Dulce M. Yanes</li>
+          <li>Eduviges Centeno</li><li>Emely Solis Galeno</li><li>Eric Michaud</li><li>Fardin Ansari</li>
+          <li>Fatima Gallegos</li><li>Fidel Arzate</li><li>Gabriela M. Perez</li><li>Guadalupe Rodriguez</li>
+          <li>Havid Castillo Alvarez</li><li>Hector Urbina Saucedo</li><li>Jaden Guzman</li>
+          <li>Javier Guillen Gomez</li><li>Jimy Diaz Caballero</li><li>Jocelyn L. Ramon</li>
+          <li>Josue Gudino Hernandez</li><li>Kevin Morales</li><li>Khristian Aguilar</li>
+          <li>Leonardo Mariscal</li><li>Logan Joffrion</li><li>Marcos Reyes Rodriguez</li>
+          <li>Maria Ostiguin-Campos</li><li>Mario Alvarado Quinonez</li><li>Mark Polanco</li>
+          <li>Matthew Medina</li><li>Milagros Sagal</li><li>Mynor Cano Garcia</li>
+          <li>N'Korey Smith</li><li>Nelson Valeriano Rivera</li><li>Omar Cenobio Cenobio</li>
+          <li>Ricardo Maldonado</li><li>Ricardo Ortega</li><li>Samuel Hernandez</li>
+          <li>Santiago Perez</li><li>Sergio Andrade Paz</li><li>Stephen Hoover</li>
+          <li>Thalia Penton Del Monte</li><li>Wilmer Orellana Nataren</li>
         </ul>
       </div>
       <div class="spotlight-card">
