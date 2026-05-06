@@ -180,21 +180,35 @@
   .hero-mobile-title {
     display: none;
     background: var(--blue-dark);
-    text-align: center;
-    padding: 20px 20px 24px;
+    padding: 18px 20px 22px;
+  }
+  .hero-mobile-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-align: left;
+  }
+  .hero-mobile-top img {
+    height: 48px; width: auto;
+    flex-shrink: 0;
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
   }
   .hero-mobile-title h1 {
-    font-size: 28px;
-    font-weight: 800;
+    font-size: 22px; font-weight: 800;
     color: var(--white);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    line-height: 1.1; letter-spacing: -0.02em;
   }
   .hero-mobile-title h1 em { font-style: normal; color: var(--gold-light); }
   .hero-mobile-title p {
-    font-size: 13px;
-    color: rgba(255,255,255,0.65);
-    margin-top: 6px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 4px;
+  }
+  .hero-mobile-rule {
+    width: 40px; height: 2px;
+    background: var(--gold);
+    margin: 14px 0 0;
   }
   @keyframes fadeUp {
     from { opacity:0; transform:translateY(16px); }
@@ -491,9 +505,10 @@
     .spotlight-grid { grid-template-columns: 1fr 1fr; }
     .spotlight-card { align-self: start; }
     .hero-bottom { display: none; }
+    .hero-logo { display: none; }
+    .hero-eyebrow { display: none; }
     .hero-mobile-title { display: block; }
-    .hero-logo { height: 44px; }
-    .hero-overlay { padding: 16px 16px 16px; justify-content: flex-start; }
+    .hero-overlay { padding: 16px; justify-content: flex-start; }
   }
   @media (max-width: 420px) {
     .spotlight-grid { grid-template-columns: 1fr; }
@@ -552,8 +567,14 @@
 
 <!-- Mobile-only title panel — sits below the photo, hidden on desktop -->
 <div class="hero-mobile-title">
-  <h1>Celebrating <em>Guthrie Excellence</em></h1>
-  <p>Honoring the students, teams, and achievements of our 2025–2026 award season</p>
+  <div class="hero-mobile-top">
+    <img src="GuthrieAmbigram1000white.png" alt="The Guthrie Center"
+         onerror="this.src='https://guthriectecenter.com/wp-content/uploads/2022/08/Guthrie-Logo-White.png'">
+    <div>
+      <h1>Celebrating <em>Guthrie Excellence</em></h1>
+      <p>Honoring the students, teams, and achievements of our 2025–2026 award season</p>
+    </div>
+  </div>
   <div class="hero-mobile-rule"></div>
 </div> ── animated on scroll -->
 <div class="stats-band">
