@@ -297,6 +297,41 @@
     font-size: 10px; letter-spacing: 0.1em;
   }
 
+  /* ── HONOR SECTION LAYOUTS ── */
+  .champ-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+    align-items: start;
+  }
+  .competitor-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 48px;
+    align-items: start;
+  }
+  .wide-card { width: 100%; }
+  .name-list-cols {
+    column-count: 3;
+    column-gap: 8px;
+    display: block;
+  }
+  .name-list-cols li {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 4px;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    background: rgba(0,61,165,0.06);
+    padding: 2px 8px;
+    border-radius: 20px;
+    line-height: 1.6;
+    break-inside: avoid;
+  }
+
   /* ── COMPACT SPOTLIGHT GRID ── */
   .spotlight-grid {
     display: grid;
@@ -429,6 +464,8 @@
     .gallery-grid .g-main { grid-column: span 2; }
     .main { padding: 32px 16px 60px; }
     .search-wrap { padding: 14px 16px; }
+    .champ-row, .competitor-row { grid-template-columns: 1fr; }
+    .name-list-cols { column-count: 2; }
     .accordion-cols { grid-template-columns: 1fr; }
     .spotlight-grid { grid-template-columns: 1fr 1fr; }
     .spotlight-card { align-self: start; }
@@ -518,7 +555,9 @@
   <section>
     <span class="section-label">Top Honors</span>
     <h2 class="section-title">State &amp; <span>National</span> Recognition</h2>
-    <div class="spotlight-grid">
+
+    <!-- Champion cards — two columns -->
+    <div class="champ-row">
       <div class="spotlight-card gold-card">
         <span class="card-icon">🏆</span>
         <p class="card-category">State Champions</p>
@@ -536,17 +575,21 @@
           <li>Ryenne Kohler</li><li>Sophia Marino</li><li>Vilius Bagdzevicius</li>
         </ul>
       </div>
-      <div class="spotlight-card">
+    </div>
+
+    <!-- Competitor cards — full width, names in columns -->
+    <div class="competitor-row">
+      <div class="spotlight-card wide-card">
         <span class="card-icon">🌟</span>
         <p class="card-category">Competed at State</p>
         <p class="card-title">State Competitors</p>
-        <ul class="name-list" id="state-list"></ul>
+        <ul class="name-list name-list-cols" id="state-list"></ul>
       </div>
-      <div class="spotlight-card">
+      <div class="spotlight-card wide-card">
         <span class="card-icon">🌎</span>
         <p class="card-category">Competed Nationally</p>
         <p class="card-title">National Competitors</p>
-        <ul class="name-list" id="national-list"></ul>
+        <ul class="name-list name-list-cols" id="national-list"></ul>
       </div>
     </div>
   </section>
