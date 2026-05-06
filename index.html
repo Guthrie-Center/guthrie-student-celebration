@@ -343,13 +343,19 @@
     flex-shrink: 0;
     width: 240px;
     height: 160px;
-    background: #1a1a1a center/cover no-repeat;
+    background: #1a1a1a;
     border: 2px solid #2a2a2a;
     border-radius: 2px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
     transition: border-color 0.2s, transform 0.2s;
+  }
+  .film-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   .film-frame:hover {
     border-color: var(--gold);
@@ -892,7 +898,7 @@
     <h2 class="section-title">State &amp; <span>National</span> Recognition</h2>
 
     <!-- Champion cards — two columns -->
-    <div class="champ-row">
+    <div class="champ-row" style="grid-template-columns: 1fr 1fr 1fr;">
       <div class="spotlight-card gold-card">
         <span class="card-icon">🏆</span>
         <p class="card-category">State Champions</p>
@@ -916,30 +922,10 @@
           <li>Ryenne Kohler</li><li>Sophia Marino</li><li>Vilius Bagdzevicius</li>
         </ul>
       </div>
-    </div>
-
-    <!-- Competitor cards — full width, names in columns -->
-    <div class="competitor-row">
-      <div class="spotlight-card wide-card">
-        <span class="card-icon">🌟</span>
-        <p class="card-category">Competed at State</p>
-        <p class="card-title">State Competitors</p>
-        <ul class="name-list name-list-cols" id="state-list"></ul>
-      </div>
-      <div class="spotlight-card wide-card">
-        <span class="card-icon">🌎</span>
-        <p class="card-category">Competed Nationally</p>
-        <p class="card-title">National Competitors</p>
-        <ul class="name-list name-list-cols" id="national-list"></ul>
-      </div>
-    </div>
-
-    <!-- Xavier Alexander spotlight -->
-    <div class="spotlight-grid" style="margin-top:12px;margin-bottom:0;">
-      <div class="spotlight-card" style="column-span:none;">
+      <div class="spotlight-card">
         <span class="card-icon">🎬</span>
         <p class="card-category">Filmmaking</p>
-        <p class="card-title" style="font-size:14px;">Xavier Alexander — Award-Winning Filmmaker</p>
+        <p class="card-title">Xavier Alexander — Award-Winning Filmmaker</p>
         <div class="team-photo loaded" data-src="photos/xavier.jpg" title="Xavier Alexander" style="background-image:url('photos/xavier.jpg');margin-bottom:12px;"></div>
         <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px;">
           <div style="background:rgba(0,61,165,0.06);border-radius:6px;padding:8px 10px;">
@@ -961,7 +947,25 @@
         </div>
       </div>
     </div>
+
+    <!-- Competitor cards -->
+    <div class="competitor-row">
+      <div class="spotlight-card wide-card">
+        <span class="card-icon">🌟</span>
+        <p class="card-category">Competed at State</p>
+        <p class="card-title">State Competitors</p>
+        <ul class="name-list name-list-cols" id="state-list"></ul>
+      </div>
+      <div class="spotlight-card wide-card">
+        <span class="card-icon">🌎</span>
+        <p class="card-category">Competed Nationally</p>
+        <p class="card-title">National Competitors</p>
+        <ul class="name-list name-list-cols" id="national-list"></ul>
+      </div>
+    </div>
   </section>
+
+  <!-- INDIVIDUAL HONORS -->
   <section style="margin-top:48px;">
     <span class="section-label">Individual Honors</span>
     <h2 class="section-title">Special <span>Recognitions</span></h2>
@@ -1446,13 +1450,14 @@ document.querySelectorAll('.team-photo').forEach(slot => {
   allPhotos.forEach((src, i) => {
     const frame = document.createElement('div');
     frame.className = 'film-frame';
-    frame.style.backgroundImage = `url('${src}')`;
     frame.dataset.index = i % PHOTOS.length;
     frame.addEventListener('click', () => openLightbox(i % PHOTOS.length));
-    // Only hide frame if image genuinely fails to load
-    const img = new Image();
-    img.onerror = () => { frame.style.display = 'none'; };
+    const img = document.createElement('img');
     img.src = src;
+    img.alt = '';
+    img.loading = 'lazy';
+    img.onerror = () => { frame.style.display = 'none'; };
+    frame.appendChild(img);
     track.appendChild(frame);
   });
 
