@@ -95,6 +95,7 @@
     /* Badges */
     .scholarship-badge { background: #152550; border-color: rgba(100,150,255,0.2); color: var(--ink); }
     .college-pill { background: linear-gradient(135deg,#1a2d5a,#152550); border-color: rgba(100,150,255,0.2); color: #a8c0e8; }
+    .college-pill:hover { background: var(--blue-light); border-color: var(--blue-light); color: #fff; }
 
     /* Section titles */
     .section-title { color: var(--ink); border-color: rgba(100,150,255,0.15); }
@@ -681,6 +682,14 @@
     background: linear-gradient(135deg,#EEF4FF,#F4F8FF);
     border: 1px solid rgba(0,61,165,0.14);
     border-radius: 20px; font-size: 12.5px; font-weight: 500; color: var(--blue-dark);
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .college-pill:hover {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: #fff;
   }
 
   /* ── FOOTER ── */
@@ -1116,7 +1125,59 @@ const DATA = {
   droneChamps:'Avery Meyers,Carsten Morford,Joohyuk Park,Ryenne Kohler,Sophia Marino,Vilius Bagdzevicius',
   nths:'Addison Teixeira,Andrew Davidow,Ariana Ochoa,Arianna Giron,Brenna Laderer,Carsten Morford,Elena Lonsford,Emily Mealey,Emily Valicek,Emmie Hanvey,Genesis Mejia,Hailey Shaffer,Jane McWhorter,Janelle Rodriguez,Jennifer Campo,Jina Park,Kensy Hernandez,Kimberly Flores Morales,Logan Joffrion,Abigail Clark,Mariam Pirela,Martha Garcia,Mia Robles Silva,Monserrat Mendoza-Figueroa,Nicolas Schoenhofer,Paula Almaraz,Paulina Cop Sanchez,Sakino Kitaoka,Sofia Perez,Trace Murphree,Vilius Bagdzevicius,Vincent McGuire,William Walsh',
   scholarships:'ACE,CITGO,CITGO Scholarship,Embry-Riddle Aeronautical University,Emerson College,Houston Livestock Show and Rodeo,Jacksonville University,Jason Roberts Scholarship,Louisiana Tech,Mary Boyce,Meadow Wood PTA Scholarship,Michael G. Meyers,Navy Academy Prep – Full Ride,Navy ROTC – Full Ride,Pratt,Reyes Simms Award,SCAD,School Art Auction,Spring Branch Education Foundation,Spring Branch Education Foundation Scholarship,University of Texas,University of Houston,University of Oklahoma,US Army ROTC Scholarship,Utah State University Merit Scholarship,We Go Public,Youth Auction',
-  colleges:'Auburn University,Auguste Escoffier School of Culinary Arts,Colorado University–Denver,Dallas College,Greensville University,Houston Christian University,Houston City College,Johnson and Wales University,Lone Star College,LSU,Mississippi State University,Montana State University,Northwestern University,Pratt Institute,Purdue University,Regis University,RPI,Sam Houston State University,SCAD,Sofia University St. Kliment Ohridski,Southern Adventist University,Southern Methodist University,Southwestern University,Stephen F. Austin University,Syracuse University,Texas A&M San Antonio,Texas A&M University,Texas Christian University,Texas State University,University of Arkansas,University of Charleston,University of Connecticut,University of Houston,University of Houston Downtown,University of Mississippi,University of New Mexico,University of Oklahoma,University of Oregon,University of Pittsburgh,University of St. Thomas,University of Tennessee,USC,UT Arlington,UT Austin,UT Dallas,UT El Paso,UT San Antonio,Utah State University,Virginia Tech,William Jewell,University of Wisconsin',
+  colleges:[
+    {n:'Auburn University',u:'https://www.auburn.edu'},
+    {n:'Auguste Escoffier School of Culinary Arts',u:'https://www.escoffier.edu'},
+    {n:'Colorado University–Denver',u:'https://www.ucdenver.edu'},
+    {n:'Dallas College',u:'https://www.dallascollege.edu'},
+    {n:'Greensville University',u:'https://www.greensvilleuniversity.edu'},
+    {n:'Houston Christian University',u:'https://hbu.edu'},
+    {n:'Houston City College',u:'https://www.hccs.edu'},
+    {n:'Johnson and Wales University',u:'https://www.jwu.edu'},
+    {n:'Lone Star College',u:'https://www.lonestar.edu'},
+    {n:'LSU',u:'https://www.lsu.edu'},
+    {n:'Mississippi State University',u:'https://www.msstate.edu'},
+    {n:'Montana State University',u:'https://www.montana.edu'},
+    {n:'Northwestern University',u:'https://www.northwestern.edu'},
+    {n:'Pratt Institute',u:'https://www.pratt.edu'},
+    {n:'Purdue University',u:'https://www.purdue.edu'},
+    {n:'Regis University',u:'https://www.regis.edu'},
+    {n:'RPI',u:'https://www.rpi.edu'},
+    {n:'Sam Houston State University',u:'https://www.shsu.edu'},
+    {n:'SCAD',u:'https://www.scad.edu'},
+    {n:'Sofia University St. Kliment Ohridski',u:'https://www.uni-sofia.bg/index.php/eng'},
+    {n:'Southern Adventist University',u:'https://www.southern.edu'},
+    {n:'Southern Methodist University',u:'https://www.smu.edu'},
+    {n:'Southwestern University',u:'https://www.southwestern.edu'},
+    {n:'Stephen F. Austin University',u:'https://www.sfasu.edu'},
+    {n:'Syracuse University',u:'https://www.syracuse.edu'},
+    {n:'Texas A&M San Antonio',u:'https://www.tamusa.edu'},
+    {n:'Texas A&M University',u:'https://www.tamu.edu'},
+    {n:'Texas Christian University',u:'https://www.tcu.edu'},
+    {n:'Texas State University',u:'https://www.txst.edu'},
+    {n:'University of Arkansas',u:'https://www.uark.edu'},
+    {n:'University of Charleston',u:'https://www.ucwv.edu'},
+    {n:'University of Connecticut',u:'https://uconn.edu'},
+    {n:'University of Houston',u:'https://www.uh.edu'},
+    {n:'University of Houston Downtown',u:'https://www.uhd.edu'},
+    {n:'University of Mississippi',u:'https://www.olemiss.edu'},
+    {n:'University of New Mexico',u:'https://www.unm.edu'},
+    {n:'University of Oklahoma',u:'https://www.ou.edu'},
+    {n:'University of Oregon',u:'https://www.uoregon.edu'},
+    {n:'University of Pittsburgh',u:'https://www.pitt.edu'},
+    {n:'University of St. Thomas',u:'https://www.stthom.edu'},
+    {n:'University of Tennessee',u:'https://www.utk.edu'},
+    {n:'University of Wisconsin',u:'https://www.wisc.edu'},
+    {n:'USC',u:'https://www.usc.edu'},
+    {n:'UT Arlington',u:'https://www.uta.edu'},
+    {n:'UT Austin',u:'https://www.utexas.edu'},
+    {n:'UT Dallas',u:'https://www.utdallas.edu'},
+    {n:'UT El Paso',u:'https://www.utep.edu'},
+    {n:'UT San Antonio',u:'https://www.utsa.edu'},
+    {n:'Utah State University',u:'https://www.usu.edu'},
+    {n:'Virginia Tech',u:'https://www.vt.edu'},
+    {n:'William Jewell',u:'https://www.william.jewell.edu'},
+  ],
 };
 
 /* ── SEARCH INDEX ── */
@@ -1201,7 +1262,17 @@ function fillBadges(id, csv, cls) {
   csv.split(',').forEach(n => { const s=document.createElement('span'); s.className=cls; s.textContent=n.trim(); el.appendChild(s); });
 }
 fillBadges('scholarship-list', DATA.scholarships, 'scholarship-badge');
-fillBadges('college-list', DATA.colleges, 'college-pill');
+// Colleges as hotlinks
+const collegeEl = document.getElementById('college-list');
+DATA.colleges.forEach(c => {
+  const a = document.createElement('a');
+  a.className = 'college-pill';
+  a.textContent = c.n;
+  a.href = c.u;
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  collegeEl.appendChild(a);
+});
 
 /* ── FILM STRIP ── */
 (function(){
