@@ -545,6 +545,65 @@
     font-size: 10px; letter-spacing: 0.1em;
   }
 
+  /* ── TEAM PHOTO SLOT ── */
+  .team-photo {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 6px;
+    margin: 10px 0 12px;
+    background: rgba(0,61,165,0.06) center/cover no-repeat;
+    border: 2px dashed rgba(0,61,165,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+  }
+  .team-photo.loaded {
+    border: 2px solid transparent;
+    cursor: zoom-in;
+  }
+  .team-photo.loaded:hover {
+    transform: scale(1.02);
+    border-color: var(--gold);
+  }
+  .team-photo.loaded::after {
+    content: '⤢';
+    position: absolute;
+    bottom: 6px; right: 8px;
+    color: rgba(255,255,255,0.85);
+    font-size: 18px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .team-photo.loaded:hover::after { opacity: 1; }
+  .team-photo-hint {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: rgba(0,61,165,0.35);
+    text-align: center;
+    padding: 8px;
+    pointer-events: none;
+  }
+  .gold-card .team-photo {
+    background-color: rgba(201,168,76,0.08);
+    border-color: rgba(201,168,76,0.3);
+  }
+  .gold-card .team-photo-hint { color: rgba(100,70,0,0.4); }
+
+  @media (prefers-color-scheme: dark) {
+    .team-photo {
+      background-color: rgba(100,150,255,0.06);
+      border-color: rgba(100,150,255,0.2);
+    }
+    .team-photo-hint { color: rgba(150,180,255,0.4); }
+    .gold-card .team-photo { background-color: rgba(201,168,76,0.06); border-color: rgba(201,168,76,0.2); }
+  }
+
   /* ── HONOR SECTION LAYOUTS ── */
   .champ-row {
     display: grid;
@@ -828,6 +887,9 @@
         <span class="card-icon">🏆</span>
         <p class="card-category">State Champions</p>
         <p class="card-title">FFA Ag Sales — State Champions</p>
+        <div class="team-photo" data-src="photos/team-ag-sales.jpg" title="FFA Ag Sales Team">
+          <span class="team-photo-hint">📷 Add team photo: photos/team-ag-sales.jpg</span>
+        </div>
         <ul class="name-list">
           <li>Elizabeth Frew</li><li>Jordyn Howell</li><li>Kinsley Binder</li><li>Lucy Esparza</li>
         </ul>
@@ -836,6 +898,9 @@
         <span class="card-icon">🇺🇸</span>
         <p class="card-category">National Champions</p>
         <p class="card-title">NJROTC Drone Team — National Champions</p>
+        <div class="team-photo" data-src="photos/team-drone.jpg" title="NJROTC Drone Team">
+          <span class="team-photo-hint">📷 Add team photo: photos/team-drone.jpg</span>
+        </div>
         <ul class="name-list">
           <li>Avery Meyers</li><li>Carsten Morford</li><li>Joohyuk Park</li>
           <li>Ryenne Kohler</li><li>Sophia Marino</li><li>Vilius Bagdzevicius</li>
@@ -849,12 +914,18 @@
         <span class="card-icon">🌟</span>
         <p class="card-category">Competed at State</p>
         <p class="card-title">State Competitors</p>
+        <div class="team-photo" data-src="photos/team-state.jpg" title="State Competitors">
+          <span class="team-photo-hint">📷 Add team photo: photos/team-state.jpg</span>
+        </div>
         <ul class="name-list name-list-cols" id="state-list"></ul>
       </div>
       <div class="spotlight-card wide-card">
         <span class="card-icon">🌎</span>
         <p class="card-category">Competed Nationally</p>
         <p class="card-title">National Competitors</p>
+        <div class="team-photo" data-src="photos/team-national.jpg" title="National Competitors">
+          <span class="team-photo-hint">📷 Add team photo: photos/team-national.jpg</span>
+        </div>
         <ul class="name-list name-list-cols" id="national-list"></ul>
       </div>
     </div>
@@ -1274,8 +1345,27 @@ DATA.colleges.forEach(c => {
   collegeEl.appendChild(a);
 });
 
-/* ── FILM STRIP ── */
-(function(){
+/* ── TEAM PHOTOS ── */
+document.querySelectorAll('.team-photo').forEach(slot => {
+  const src = slot.dataset.src;
+  const title = slot.dataset.title || '';
+  const img = new Image();
+  img.onload = () => {
+    slot.style.backgroundImage = `url('${src}')`;
+    slot.classList.add('loaded');
+    const hint = slot.querySelector('.team-photo-hint');
+    if (hint) hint.remove();
+    slot.addEventListener('click', () => {
+      document.getElementById('lb-img').src = src;
+      document.getElementById('lb-counter').textContent = title;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  };
+  img.src = src;
+});
+
+/* ── FILM STRIP (crossfade) ── */
   const PHOTOS = Array.from({length:15}, (_,i) =>
     'photos/strip' + String(i+1).padStart(2,'0') + '.jpg'
   );
