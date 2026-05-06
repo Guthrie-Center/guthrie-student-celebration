@@ -27,6 +27,86 @@
     --r:          8px;
     --font:       'Outfit', system-ui, sans-serif;
     --mono:       'DM Mono', monospace;
+
+    /* surfaces */
+    --bg:         #F5F7FA;
+    --surface:    #ffffff;
+    --surface-2:  #EEF2FA;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --cream:    #0d1b3e;
+      --white:    #152550;
+      --ink:      #e8edf8;
+      --ink-soft: #a8b8d8;
+      --muted:    #7a90b8;
+      --border:   rgba(100,150,255,0.15);
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+      --shadow:    0 4px 24px rgba(0,0,0,0.4);
+      --bg:       #0d1b3e;
+      --surface:  #152550;
+      --surface-2:#1a2d5a;
+      --gold:     #d4aa50;
+      --gold-light:#f0cc70;
+      --blue-light:#4a7ad4;
+    }
+
+    /* Search bar */
+    #search-input {
+      background: #1a2d5a !important;
+      color: #e8edf8 !important;
+      border-color: rgba(100,150,255,0.2) !important;
+    }
+    #search-input:focus {
+      background: #1f3568 !important;
+      border-color: var(--blue-light) !important;
+    }
+    #search-results-panel { background: #152550; border-color: rgba(100,150,255,0.2); }
+    .result-item { border-color: rgba(100,150,255,0.1); }
+    .result-name { color: var(--gold-light); }
+
+    /* Tags in dark mode */
+    .tag-cert     { background: rgba(74,122,212,0.2); color: #90b8f0; }
+    .tag-compete  { background: rgba(180,120,20,0.2); color: #d4a84a; }
+    .tag-lead     { background: rgba(20,140,60,0.2);  color: #6dcc90; }
+    .tag-honor    { background: rgba(160,40,120,0.2); color: #d880c0; }
+    .tag-national { background: rgba(180,140,0,0.2);  color: #d4aa50; border-color: #8a6820; }
+    .tag-state    { background: rgba(10,100,180,0.2); color: #70b0e8; }
+
+    /* Cards */
+    .spotlight-card { background: #152550; border-color: rgba(100,150,255,0.15); }
+    .spotlight-card.gold-card { background: linear-gradient(140deg,#1a2a10 0%,#1f3210 100%); border-color: #6a5010; }
+    .gold-card .card-title { color: var(--gold-light); }
+    .gold-card .name-list li { background: rgba(201,168,76,0.15); color: var(--gold-light); }
+    .name-list li { background: rgba(100,150,255,0.12); color: var(--ink-soft); }
+    .name-list-cols li { background: rgba(100,150,255,0.12); color: var(--ink-soft); }
+
+    /* Accordions */
+    .accordion-item { background: #152550; border-color: rgba(100,150,255,0.15); }
+    .accordion-header:hover { background: rgba(100,150,255,0.07); }
+    .accordion-header.open { background: rgba(100,150,255,0.10); }
+    .acc-title { color: var(--ink); }
+    .acc-count { background: #1a2d5a; color: var(--muted); }
+    .accordion-body { border-color: rgba(100,150,255,0.1); }
+    .acc-name { background: #1a2d5a; border-color: rgba(100,150,255,0.15); color: var(--ink-soft); }
+    .acc-name:hover { background: rgba(100,150,255,0.15); border-color: var(--blue-light); color: var(--gold-light); }
+
+    /* Badges */
+    .scholarship-badge { background: #152550; border-color: rgba(100,150,255,0.2); color: var(--ink); }
+    .college-pill { background: linear-gradient(135deg,#1a2d5a,#152550); border-color: rgba(100,150,255,0.2); color: #a8c0e8; }
+
+    /* Section titles */
+    .section-title { color: var(--ink); border-color: rgba(100,150,255,0.15); }
+    .section-label { color: var(--gold-light); }
+
+    /* Mobile hero panel */
+    .hero-mobile-title { background: #0a1530; }
+
+    /* Search wrap */
+    .search-wrap { background: #0f2040; border-color: rgba(100,150,255,0.15); }
+    .search-hint { color: var(--muted); }
+    .no-results { color: var(--muted); }
   }
 
   html { scroll-behavior: smooth; }
@@ -36,6 +116,7 @@
     color: var(--ink);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    transition: background 0.3s, color 0.3s;
   }
 
   /* ── HERO CAROUSEL ── */
