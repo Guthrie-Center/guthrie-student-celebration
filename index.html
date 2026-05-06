@@ -299,22 +299,18 @@
 
   /* ── COMPACT SPOTLIGHT GRID ── */
   .spotlight-grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 12px;
     margin-bottom: 48px;
-    align-items: flex-start;
-  }
-  .spotlight-card {
-    flex: 0 1 auto;
-    min-width: 200px;
-    max-width: 320px;
+    align-items: start;
   }
   .spotlight-card {
     background: var(--white); border: 1px solid var(--border);
     border-radius: var(--r); padding: 16px 18px;
     box-shadow: var(--shadow-sm);
     transition: transform 0.15s, box-shadow 0.15s;
+    align-self: start;
   }
   .spotlight-card:hover {
     transform: translateY(-2px);
@@ -434,7 +430,8 @@
     .main { padding: 32px 16px 60px; }
     .search-wrap { padding: 14px 16px; }
     .accordion-cols { grid-template-columns: 1fr; }
-    .spotlight-card { max-width: 100%; }
+    .spotlight-grid { grid-template-columns: 1fr 1fr; }
+    .spotlight-card { align-self: start; }
   }
   @media (max-width: 420px) {
     .spotlight-grid { grid-template-columns: 1fr; }
