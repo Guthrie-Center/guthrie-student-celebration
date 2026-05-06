@@ -648,23 +648,22 @@
 
   /* ── COMPACT SPOTLIGHT GRID ── */
   .spotlight-grid {
-    columns: 4;
-    column-gap: 8px;
+    columns: 3;
+    column-gap: 10px;
     margin-bottom: 32px;
   }
   .spotlight-card {
     background: var(--white); border: 1px solid var(--border);
     border-radius: var(--r); padding: 14px 16px;
     box-shadow: var(--shadow-sm);
-    transition: transform 0.15s, box-shadow 0.15s;
+    transition: box-shadow 0.15s;
     break-inside: avoid;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     display: inline-block;
     width: 100%;
   }
   .spotlight-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 28px rgba(0,61,165,0.11);
+    box-shadow: 0 6px 28px rgba(0,61,165,0.14);
   }
   .spotlight-card.gold-card {
     border-color: var(--gold);
@@ -778,7 +777,7 @@
   /* ── RESPONSIVE ── */
 
   @media (max-width: 900px) {
-    .spotlight-grid { columns: 3; }
+    .spotlight-grid { columns: 2; }
     .competitor-row { grid-template-columns: 1fr 1fr; }
     .competitor-row .spotlight-card:last-child { grid-column: span 2; }
   }
@@ -1263,8 +1262,7 @@ const DATA = {
     {icon:'🎥',title:'SkillsUSA Filmmaking',names:'Alisa Hakalenko,Braelyn Bautista,Brighitte Gatica,Churchill Chong,Jose Del Pino Brizuela,Liam Brader,Luis Martinez,Mariam Khan,Mina Kaczenski,Sebastian Mendoza,Xavier Alexander'},
     {icon:'🩺',title:'SkillsUSA Health Science',names:'Ava Kennard,Caroline Heinecke,Guadalupe Rodriguez Esteban'},
     {icon:'🏛️',title:'TxA Architects',names:'Aaliyah Castillo,Andrew Davidow,Christian Reyes-Torres,Heyi Shen,Hudson Getty,Jonathan Ruiz,Julio Rivera,Kensy Hernandez,Mariam Pirela,Moises Hernandez-Campos,Nahomi Hernandez Velasquez,Nicholas Massad,Nickolas Rowland,Nicolas Schoenhofer,Rafael Cordero,Sakino Kitaoka,Sofia Perez,Wilbeicys Aguilar Castellanos,William Walsh'},
-    {icon:'🐕',title:'Vet Science (Group 1)',names:'Arabella Harris,Margarita Miguel,Isabella Bentancur,Vicky Guillen'},
-    {icon:'🐕',title:'Vet Science (Group 2)',names:'Abby Schroeter,Addison Knape,Benton Byrd,Claire Bernadac,Emerson Bryant,Ophylia Luu,Raina Brooks,Sylvia Castaneda'},
+    {icon:'🐕',title:'Vet Science',names:'Abby Schroeter,Addison Knape,Arabella Harris,Benton Byrd,Claire Bernadac,Emerson Bryant,Isabella Bentancur,Margarita Miguel,Ophylia Luu,Raina Brooks,Sylvia Castaneda,Vicky Guillen'},
   ],
   leadership: [
     {icon:'🌾',title:'FFA Officers',names:'Abigail Clark (President & Lake Houston District Pres),Charlotte Moore,Claire Bernadac,Elise Bernadac,Emily Valicek,Gage Schissler,Kenzie Bates,Lola Pooler (FFA Ambassador),Quinn Hopper'},
