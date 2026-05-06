@@ -176,6 +176,26 @@
     animation: fadeUp 0.7s 0.7s ease forwards;
   }
 
+  /* ── MOBILE HERO TITLE PANEL ── */
+  .hero-mobile-title {
+    display: none;
+    background: var(--blue-dark);
+    text-align: center;
+    padding: 20px 20px 24px;
+  }
+  .hero-mobile-title h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .hero-mobile-title h1 em { font-style: normal; color: var(--gold-light); }
+  .hero-mobile-title p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    margin-top: 6px;
+  }
   @keyframes fadeUp {
     from { opacity:0; transform:translateY(16px); }
     to   { opacity:1; transform:translateY(0); }
@@ -470,6 +490,10 @@
     .accordion-cols { grid-template-columns: 1fr; }
     .spotlight-grid { grid-template-columns: 1fr 1fr; }
     .spotlight-card { align-self: start; }
+    .hero-bottom { display: none; }
+    .hero-mobile-title { display: block; }
+    .hero-logo { height: 44px; }
+    .hero-overlay { padding: 16px 16px 16px; justify-content: flex-start; }
   }
   @media (max-width: 420px) {
     .spotlight-grid { grid-template-columns: 1fr; }
@@ -526,7 +550,12 @@
   </div>
 </section>
 
-<!-- ══ STATS BAND ── animated on scroll -->
+<!-- Mobile-only title panel — sits below the photo, hidden on desktop -->
+<div class="hero-mobile-title">
+  <h1>Celebrating <em>Guthrie Excellence</em></h1>
+  <p>Honoring the students, teams, and achievements of our 2025–2026 award season</p>
+  <div class="hero-mobile-rule"></div>
+</div> ── animated on scroll -->
 <div class="stats-band">
   <div class="stats-inner">
     <div class="stat"><span class="stat-num" data-target="641">0</span><span class="stat-label">Certifications Earned</span></div>
