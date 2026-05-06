@@ -299,11 +299,15 @@
 
   /* ── FILM STRIP ── */
   .filmstrip-section {
-    margin: 0 -32px 56px;
+    margin: 0 0 56px;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
     overflow: hidden;
     background: #111;
-    position: relative;
-    user-select: none;
   }
   /* Sprocket holes row */
   .filmstrip-sprockets {
@@ -333,11 +337,11 @@
     padding: 0 4px;
     will-change: transform;
   }
-  /* Individual frame */
+  /* Individual frame — 3:2 ratio */
   .film-frame {
     flex-shrink: 0;
     width: 240px;
-    height: 155px;
+    height: 160px;
     background: #1a1a1a center/cover no-repeat;
     border: 2px solid #2a2a2a;
     border-radius: 2px;
@@ -548,7 +552,7 @@
   /* ── TEAM PHOTO SLOT ── */
   .team-photo {
     width: 100%;
-    aspect-ratio: 16/9;
+    aspect-ratio: 3/2;
     border-radius: 6px;
     margin: 10px 0 12px;
     background: rgba(0,61,165,0.06) center/cover no-repeat;
@@ -916,18 +920,12 @@
         <span class="card-icon">🌟</span>
         <p class="card-category">Competed at State</p>
         <p class="card-title">State Competitors</p>
-        <div class="team-photo" data-src="photos/team-state.jpg" title="State Competitors">
-          <span class="team-photo-hint">📷 Add team photo: photos/team-state.jpg</span>
-        </div>
         <ul class="name-list name-list-cols" id="state-list"></ul>
       </div>
       <div class="spotlight-card wide-card">
         <span class="card-icon">🌎</span>
         <p class="card-category">Competed Nationally</p>
         <p class="card-title">National Competitors</p>
-        <div class="team-photo" data-src="photos/team-national.jpg" title="National Competitors">
-          <span class="team-photo-hint">📷 Add team photo: photos/team-national.jpg</span>
-        </div>
         <ul class="name-list name-list-cols" id="national-list"></ul>
       </div>
     </div>
@@ -970,6 +968,24 @@
         <p class="card-title">Students on a Military Path</p>
         <ul class="name-list">
           <li>Irving Julian</li><li>Raymond Garcia</li><li>Carlos Robles</li>
+        </ul>
+      </div>
+      <div class="spotlight-card">
+        <span class="card-icon">🎓</span>
+        <p class="card-category">Tarleton State University</p>
+        <p class="card-title">Tarleton Ag Business Cords</p>
+        <ul class="name-list">
+          <li>Clark Ortega</li><li>Elizabeth Christy</li><li>Gage Schissler</li><li>Grace Smith</li>
+          <li>Kaylee Johnson</li><li>Kenzie Bates</li><li>Kyle Ingersoll</li><li>Natalie Enriquez</li>
+          <li>Shayleigh Thomas</li><li>William Dudley</li><li>Zoe Yan</li>
+        </ul>
+      </div>
+      <div class="spotlight-card">
+        <span class="card-icon">💼</span>
+        <p class="card-category">Spring Branch ISD</p>
+        <p class="card-title">Paid SBISD Interns</p>
+        <ul class="name-list">
+          <li>Israel Martinez</li>
         </ul>
       </div>
     </div>
@@ -1190,8 +1206,6 @@ const DATA = {
     {icon:'✂️',title:'SkillsUSA Cosmetology Officers',names:'Mitzel Guerrero,Samantha Ortiz,Tatiana Reyes'},
     {icon:'👨‍🍳',title:'SkillsUSA Culinary Officers',names:'Lydia Lane,Madison Stone,Morgan Stone'},
     {icon:'🎥',title:'SkillsUSA Filmmaking Officers',names:'Alice Hakalenko,Liam Brader,Sebastian Mendoza'},
-    {icon:'🎓',title:'Tarleton Ag Business Cords',names:'Clark Ortega,Elizabeth Christy,Gage Schissler,Grace Smith,Kaylee Johnson,Kenzie Bates,Kyle Ingersoll,Natalie Enriquez,Shayleigh Thomas,William Dudley,Zoe Yan'},
-    {icon:'💼',title:'Paid SBISD Interns',names:'Israel Martinez'},
   ],
   state:'Aaliyah Castillo,Abigail Clark,Abigail Wilson,Alisa Hakalenko,Andrew Davidow,Christian Reyes-Torres,Churchill Chong,Claire Bernadac,Elena Lonsford,Elizabeth Frew,Heyi Shen,Hudson Getty,James Fowler,Jazz Collymore,Jeremy Garcia-Cortez,Jonathan Ruiz,Jordyn Howell,Jose Del Pino Brizuela,Julio Rivera,Kensy Hernandez,Kinsley Binder,Lucy Esparza,Luis Roman Barrera,Lydia Lane,Madison Stone,Mariam Khan,Mariam Pirela,Michael Javerian,Mitzel Guerrero,Moises Hernandez-Campos,Morgan Stone,Nahomi Hernandez Velasquez,Nicholas Massad,Nickolas Rowland,Nicolas Schoenhofer,Rafael Cordero,Reese Tilton,Sakino Kitaoka,Samantha Ortiz,Sebastian Mendoza,Seojin Park,Sofia Perez,Tatiana Reyes,Vincent McGuire,Wilbeicys Aguilar Castellanos,Xavier Alexander',
   national:'Ashley Vallecillo Aguilar,Avery Meyers,Christian Reyes-Torres,Clark McWhorter,Colin Rancoll Canova,Corbin McCalmont,Heyi Shen,Irmenia Robau,Joohyuk Park,Julio Rivera,Karen Teyuca,Kensy Hernandez,Logan Mares,Natan Orellana Diaz,Nicholas Massad,Nicolas Schoenhofer,Ryenne Kohler,Sasha Robau,Sophia Marino,Valeria Sabogal Parada,Vilius Bagdzevicius,William Walsh,Xavier Alexander',
