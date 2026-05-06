@@ -776,6 +776,15 @@
   }
 
   /* ── RESPONSIVE ── */
+
+  /* Tablet — 2 columns for spotlight, competitor row stacks */
+  @media (max-width: 900px) {
+    .competitor-row { grid-template-columns: 1fr 1fr; }
+    .competitor-row .spotlight-card:last-child { grid-column: span 2; }
+    .spotlight-grid { columns: 3; }
+  }
+
+  /* Large phone / small tablet */
   @media (max-width: 680px) {
     .carousel { aspect-ratio: 16/9; }
     .hero-overlay { padding-bottom: 30px; }
@@ -784,23 +793,29 @@
     .stat { min-width: 0; flex: 1; padding: 14px 4px; }
     .stat-num { font-size: 22px; }
     .stat-label { font-size: 8px; letter-spacing: 0.06em; }
-    .gallery-grid { grid-template-columns: repeat(2,1fr); }
-    .gallery-grid .g-main { grid-column: span 2; }
     .main { padding: 32px 16px 60px; }
     .search-wrap { padding: 14px 16px; }
-    .champ-row, .competitor-row { grid-template-columns: 1fr; }
+    .champ-row { grid-template-columns: 1fr 1fr; }
+    .competitor-row { grid-template-columns: 1fr; }
+    .competitor-row .spotlight-card:last-child { grid-column: span 1; }
     .accordion-cols { grid-template-columns: 1fr; }
     .spotlight-grid { columns: 2; }
     .spotlight-card { min-width: unset; max-width: unset; }
-    .spotlight-card { align-self: start; }
     .hero-bottom { display: none; }
     .hero-logo { display: none; }
     .hero-eyebrow { display: none; }
     .hero-mobile-title { display: block; }
     .hero-overlay { padding: 16px; justify-content: flex-start; }
   }
-  @media (max-width: 420px) {
-    .spotlight-grid { grid-template-columns: 1fr; }
+
+  /* Phone */
+  @media (max-width: 480px) {
+    .champ-row { grid-template-columns: 1fr; }
+    .spotlight-grid { columns: 1; }
+    .stats-inner { flex-wrap: wrap; }
+    .stat { min-width: 33%; padding: 12px 6px; }
+    .stat-num { font-size: 26px; }
+    .stat-label { font-size: 9px; }
   }
 </style>
 </head>
