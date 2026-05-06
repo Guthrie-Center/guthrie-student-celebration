@@ -1396,6 +1396,51 @@ DATA.colleges.forEach(c => {
   collegeEl.appendChild(a);
 });
 
+/* ── LIGHTBOX (global) ── */
+const lb      = document.getElementById('lightbox');
+const lbImg   = document.getElementById('lb-img');
+const lbCount = document.getElementById('lb-counter');
+let lbPhotos  = [];
+let lbCur     = 0;
+
+function openLightbox(photos, idx) {
+  lbPhotos = photos;
+  lbCur = idx;
+  lbImg.src = lbPhotos[lbCur];
+  lbCount.textContent = typeof lbPhotos[lbCur] === 'string'
+    ? (lbCur + 1) + ' / ' + lbPhotos.length
+    : lbPhotos[lbCur].title || '';
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+  lbImg.src = '';
+}
+function lbGo(dir) {
+  lbCur = (lbCur + dir + lbPhotos.length) % lbPhotos.length;
+  lbImg.src = typeof lbPhotos[lbCur] === 'string' ? lbPhotos[lbCur] : lbPhotos[lbCur].src;
+  lbCount.textContent = (lbCur + 1) + ' / ' + lbPhotos.length;
+}
+
+document.getElementById('lb-close').addEventListener('click', closeLightbox);
+document.getElementById('lb-prev').addEventListener('click', () => lbGo(-1));
+document.getElementById('lb-next').addEventListener('click', () => lbGo(1));
+lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'ArrowLeft')  lbGo(-1);
+  if (e.key === 'ArrowRight') lbGo(1);
+  if (e.key === 'Escape')     closeLightbox();
+});
+let lbTx = 0;
+lbImg.addEventListener('touchstart', e => { lbTx = e.touches[0].clientX; }, {passive:true});
+lbImg.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - lbTx;
+  if (Math.abs(dx) > 40) lbGo(dx < 0 ? 1 : -1);
+});
+
 /* ── TEAM PHOTOS ── */
 document.querySelectorAll('.team-photo').forEach(slot => {
   const src = slot.dataset.src;
@@ -1406,12 +1451,7 @@ document.querySelectorAll('.team-photo').forEach(slot => {
     slot.classList.add('loaded');
     const hint = slot.querySelector('.team-photo-hint');
     if (hint) hint.remove();
-    slot.addEventListener('click', () => {
-      document.getElementById('lb-img').src = src;
-      document.getElementById('lb-counter').textContent = title;
-      document.getElementById('lightbox').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    });
+    slot.addEventListener('click', () => openLightbox([src], 0));
   };
   img.src = src;
 });
@@ -1421,11 +1461,10 @@ document.querySelectorAll('.team-photo').forEach(slot => {
   const PHOTOS = Array.from({length:15}, (_,i) =>
     'photos/strip' + String(i+1).padStart(2,'0') + '.jpg'
   );
-  const FRAME_W = 244; // frame width (240) + gap (4)
-  const track   = document.getElementById('filmstrip-track');
-  const wrap    = document.getElementById('filmstrip-wrap');
+  const FRAME_W = 244;
+  const track = document.getElementById('filmstrip-track');
+  const wrap  = document.getElementById('filmstrip-wrap');
 
-  // Build sprocket holes
   function buildSprockets(id) {
     const el = document.getElementById(id);
     if (!el) return;
@@ -1444,14 +1483,12 @@ document.querySelectorAll('.team-photo').forEach(slot => {
     buildSprockets('sprockets-bottom');
   });
 
-  // Build frames — triplicate for rock-solid seamless loop
   track.innerHTML = '';
   const allPhotos = [...PHOTOS, ...PHOTOS, ...PHOTOS];
   allPhotos.forEach((src, i) => {
     const frame = document.createElement('div');
     frame.className = 'film-frame';
-    frame.dataset.index = i % PHOTOS.length;
-    frame.addEventListener('click', () => openLightbox(i % PHOTOS.length));
+    frame.addEventListener('click', () => openLightbox(PHOTOS, i % PHOTOS.length));
     const img = document.createElement('img');
     img.src = src;
     img.alt = '';
@@ -1461,8 +1498,7 @@ document.querySelectorAll('.team-photo').forEach(slot => {
     track.appendChild(frame);
   });
 
-  // Auto-scroll
-  let pos = 0;
+  let pos = PHOTOS.length * FRAME_W;
   let paused = false;
   const totalW = PHOTOS.length * FRAME_W;
 
@@ -1471,13 +1507,9 @@ document.querySelectorAll('.team-photo').forEach(slot => {
   wrap.addEventListener('touchstart', () => paused = true, {passive:true});
   wrap.addEventListener('touchend', () => setTimeout(() => paused = false, 2000));
 
-  // Start at middle third so there's room to scroll both directions
-  pos = totalW;
-
   function scroll() {
     if (!paused) {
       pos += 0.5;
-      // Reset back to middle third seamlessly
       if (pos >= totalW * 2) pos = totalW;
       track.style.transform = `translateX(-${pos}px)`;
     }
@@ -1485,7 +1517,6 @@ document.querySelectorAll('.team-photo').forEach(slot => {
   }
   requestAnimationFrame(scroll);
 
-  // Drag to scroll
   let dragStart = null, dragPos = 0;
   wrap.addEventListener('mousedown', e => { dragStart = e.clientX; dragPos = pos; paused = true; });
   window.addEventListener('mousemove', e => {
@@ -1494,51 +1525,6 @@ document.querySelectorAll('.team-photo').forEach(slot => {
     track.style.transform = `translateX(-${pos}px)`;
   });
   window.addEventListener('mouseup', () => { dragStart = null; setTimeout(() => paused = false, 1500); });
-
-  // ── LIGHTBOX ──
-  const lb       = document.getElementById('lightbox');
-  const lbImg    = document.getElementById('lb-img');
-  const lbCount  = document.getElementById('lb-counter');
-  let lbCur = 0;
-
-  function openLightbox(idx) {
-    lbCur = idx;
-    lbImg.src = PHOTOS[lbCur];
-    lbCount.textContent = (lbCur + 1) + ' / ' + PHOTOS.length;
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLightbox() {
-    lb.classList.remove('open');
-    document.body.style.overflow = '';
-    lbImg.src = '';
-  }
-  function lbGo(dir) {
-    lbCur = (lbCur + dir + PHOTOS.length) % PHOTOS.length;
-    lbImg.src = PHOTOS[lbCur];
-    lbCount.textContent = (lbCur + 1) + ' / ' + PHOTOS.length;
-  }
-
-  document.getElementById('lb-close').addEventListener('click', closeLightbox);
-  document.getElementById('lb-prev').addEventListener('click', () => lbGo(-1));
-  document.getElementById('lb-next').addEventListener('click', () => lbGo(1));
-  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
-
-  // Keyboard navigation
-  document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'ArrowLeft')  lbGo(-1);
-    if (e.key === 'ArrowRight') lbGo(1);
-    if (e.key === 'Escape')     closeLightbox();
-  });
-
-  // Touch swipe in lightbox
-  let lbTx = 0;
-  lbImg.addEventListener('touchstart', e => { lbTx = e.touches[0].clientX; }, {passive:true});
-  lbImg.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - lbTx;
-    if (Math.abs(dx) > 40) lbGo(dx < 0 ? 1 : -1);
-  });
 })();
 </script>
 </body>
