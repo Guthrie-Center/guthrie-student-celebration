@@ -877,7 +877,7 @@
 <!-- ══ STATS BAND ── animated on scroll -->
 <div class="stats-band">
   <div class="stats-inner">
-    <div class="stat"><span class="stat-num" data-target="641">0</span><span class="stat-label">Certifications Earned</span></div>
+    <div class="stat"><span class="stat-num" id="cert-count">0</span><span class="stat-label">Certifications Earned</span></div>
     <div class="stat"><span class="stat-num" data-target="285">0</span><span class="stat-label">CTSO Members</span></div>
     <div class="stat"><span class="stat-num" data-target="7">0</span><span class="stat-label">Letter Jackets</span></div>
     <div class="stat"><span class="stat-num" data-target="60" data-suffix="+">0</span><span class="stat-label">Colleges Accepted</span></div>
@@ -1168,6 +1168,15 @@
 
 /* ── ANIMATED COUNTERS ── */
 (function(){
+  // Auto-calculate total certifications from DATA
+  const certTotal = DATA.certs.reduce((sum, c) => {
+    const names = c.names.split(',').map(n => n.trim()).filter(Boolean);
+    // BLS "Entire Health Science Theory Classes" counts as 1
+    return sum + names.length;
+  }, 0);
+  const certEl = document.getElementById('cert-count');
+  if (certEl) certEl.dataset.target = certTotal;
+
   const counters = document.querySelectorAll('.stat-num[data-target]');
   let started = false;
   function run() {
