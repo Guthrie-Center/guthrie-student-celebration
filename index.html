@@ -241,6 +241,7 @@
     text-shadow: 0 2px 12px rgba(0,0,0,0.35);
   }
   .hero h1 em { font-style: normal; color: var(--gold-light); }
+  .hero h1, .hero-mobile-title h1 { color: #ffffff !important; }
   .hero-sub {
     font-size: 15px;
     font-weight: 400;
@@ -643,8 +644,8 @@
   .spotlight-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 12px;
-    margin-bottom: 48px;
+    gap: 8px;
+    margin-bottom: 32px;
     align-items: start;
   }
   .spotlight-card {
@@ -874,7 +875,7 @@
     <input type="text" id="search-input" placeholder="Search any student name…" autocomplete="off" spellcheck="false">
     <div id="search-results-panel"></div>
   </div>
-  <p class="search-hint">Type a name to find all of a student's recognitions</p>
+
 </div>
 
 <!-- ══ MAIN ══ -->
@@ -1386,13 +1387,15 @@ document.querySelectorAll('.team-photo').forEach(slot => {
   const PHOTOS = Array.from({length:15}, (_,i) =>
     'photos/strip' + String(i+1).padStart(2,'0') + '.jpg'
   );
-  const FRAME_W = 244; // frame width + gap
+  const FRAME_W = 244; // frame width (240) + gap (4)
   const track   = document.getElementById('filmstrip-track');
   const wrap    = document.getElementById('filmstrip-wrap');
 
   // Build sprocket holes
   function buildSprockets(id) {
     const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = '';
     const count = Math.ceil(window.innerWidth / 30) + 4;
     for (let i = 0; i < count; i++) {
       const s = document.createElement('div');
@@ -1402,18 +1405,23 @@ document.querySelectorAll('.team-photo').forEach(slot => {
   }
   buildSprockets('sprockets-top');
   buildSprockets('sprockets-bottom');
+  window.addEventListener('resize', () => {
+    buildSprockets('sprockets-top');
+    buildSprockets('sprockets-bottom');
+  });
 
-  // Build frames — duplicate for seamless loop
-  const allPhotos = [...PHOTOS, ...PHOTOS];
+  // Build frames — triplicate for rock-solid seamless loop
+  track.innerHTML = '';
+  const allPhotos = [...PHOTOS, ...PHOTOS, ...PHOTOS];
   allPhotos.forEach((src, i) => {
     const frame = document.createElement('div');
     frame.className = 'film-frame placeholder';
     frame.style.backgroundImage = `url('${src}')`;
     frame.dataset.index = i % PHOTOS.length;
     frame.addEventListener('click', () => openLightbox(i % PHOTOS.length));
-    // Remove placeholder class once image loads
     const img = new Image();
     img.onload = () => frame.classList.remove('placeholder');
+    img.onerror = () => frame.style.display = 'none';
     img.src = src;
     track.appendChild(frame);
   });
@@ -1428,10 +1436,14 @@ document.querySelectorAll('.team-photo').forEach(slot => {
   wrap.addEventListener('touchstart', () => paused = true, {passive:true});
   wrap.addEventListener('touchend', () => setTimeout(() => paused = false, 2000));
 
+  // Start at middle third so there's room to scroll both directions
+  pos = totalW;
+
   function scroll() {
     if (!paused) {
       pos += 0.5;
-      if (pos >= totalW) pos = 0;
+      // Reset back to middle third seamlessly
+      if (pos >= totalW * 2) pos = totalW;
       track.style.transform = `translateX(-${pos}px)`;
     }
     requestAnimationFrame(scroll);
