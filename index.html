@@ -642,20 +642,19 @@
 
   /* ── COMPACT SPOTLIGHT GRID ── */
   .spotlight-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+    columns: 4;
+    column-gap: 8px;
     margin-bottom: 32px;
-    align-items: flex-start;
   }
   .spotlight-card {
     background: var(--white); border: 1px solid var(--border);
     border-radius: var(--r); padding: 14px 16px;
     box-shadow: var(--shadow-sm);
     transition: transform 0.15s, box-shadow 0.15s;
-    flex: 1 1 200px;
-    max-width: calc(25% - 6px);
-    min-width: 180px;
+    break-inside: avoid;
+    margin-bottom: 8px;
+    display: inline-block;
+    width: 100%;
   }
   .spotlight-card:hover {
     transform: translateY(-2px);
@@ -785,7 +784,8 @@
     .search-wrap { padding: 14px 16px; }
     .champ-row, .competitor-row { grid-template-columns: 1fr; }
     .accordion-cols { grid-template-columns: 1fr; }
-    .spotlight-card { max-width: calc(50% - 4px); min-width: 140px; }
+    .spotlight-grid { columns: 2; }
+    .spotlight-card { min-width: unset; max-width: unset; }
     .spotlight-card { align-self: start; }
     .hero-bottom { display: none; }
     .hero-logo { display: none; }
