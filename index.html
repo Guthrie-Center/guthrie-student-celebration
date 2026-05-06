@@ -780,23 +780,23 @@
     .spotlight-grid { columns: 2; }
     .competitor-row { grid-template-columns: 1fr 1fr; }
     .competitor-row .spotlight-card:last-child { grid-column: span 2; }
+    .champ-row { grid-template-columns: 1fr 1fr; }
   }
 
   @media (max-width: 680px) {
     .carousel { aspect-ratio: 16/9; }
     .main { padding: 24px 12px 60px; }
     .search-wrap { padding: 14px 16px; }
-    .champ-row { grid-template-columns: 1fr 1fr; }
+    .champ-row { grid-template-columns: 1fr; }
     .competitor-row { grid-template-columns: 1fr; }
     .competitor-row .spotlight-card:last-child { grid-column: span 1; }
     .accordion-cols { grid-template-columns: 1fr; }
-    .spotlight-grid { columns: 2; }
+    .spotlight-grid { columns: 1; }
     .hero-bottom { display: none; }
     .hero-logo { display: none; }
     .hero-eyebrow { display: none; }
     .hero-mobile-title { display: block; }
     .hero-overlay { padding: 16px; justify-content: flex-start; }
-    /* Stats — keep single row but smaller */
     .stats-band { padding: 0 4px; }
     .stats-inner { flex-wrap: nowrap; }
     .stat { min-width: 0; flex: 1; padding: 12px 2px; }
@@ -805,9 +805,6 @@
   }
 
   @media (max-width: 500px) {
-    .champ-row { grid-template-columns: 1fr; }
-    .spotlight-grid { columns: 1; }
-    /* Stats wrap to 3x2 grid on very small screens */
     .stats-inner { flex-wrap: wrap; }
     .stat { min-width: 33.33%; flex: 0 0 33.33%; padding: 14px 8px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
     .stat-num { font-size: 28px; }
