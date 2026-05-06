@@ -42,16 +42,21 @@
 
   .carousel { position: relative; width: 100%; aspect-ratio: 16/9; max-height: 580px; overflow: hidden; }
   .carousel-slides {
-    display: flex;
+    position: relative;
+    width: 100%;
     height: 100%;
-    transition: transform 0.65s cubic-bezier(0.77,0,0.18,1);
-    will-change: transform;
   }
   .carousel-slide {
-    flex: 0 0 100%;
-    height: 100%;
+    position: absolute;
+    inset: 0;
     background: var(--blue-dark) center/cover no-repeat;
-    position: relative;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    pointer-events: none;
+  }
+  .carousel-slide.active {
+    opacity: 1;
+    pointer-events: auto;
   }
   .carousel-slide::after {
     content: '';
@@ -673,13 +678,15 @@
 </footer>
 
 <script>
-/* ── CAROUSEL ── */
+/* ── CAROUSEL (crossfade) ── */
 (function(){
-  const track = document.getElementById('carousel-slides');
-  const slides = track.querySelectorAll('.carousel-slide');
+  const slides = document.querySelectorAll('.carousel-slide');
   const dotsEl = document.getElementById('carousel-dots');
   const total = slides.length;
   let cur = 0, timer;
+
+  // Set first slide active
+  slides[0].classList.add('active');
 
   slides.forEach((_,i) => {
     const b = document.createElement('button');
@@ -690,9 +697,11 @@
   });
 
   function goTo(n) {
+    slides[cur].classList.remove('active');
+    dotsEl.querySelectorAll('.carousel-dot')[cur].classList.remove('active');
     cur = (n + total) % total;
-    track.style.transform = 'translateX(-' + cur*100 + '%)';
-    dotsEl.querySelectorAll('.carousel-dot').forEach((d,i) => d.classList.toggle('active', i===cur));
+    slides[cur].classList.add('active');
+    dotsEl.querySelectorAll('.carousel-dot')[cur].classList.add('active');
     resetTimer();
   }
   function resetTimer() {
@@ -708,6 +717,7 @@
   c.addEventListener('mouseleave', resetTimer);
 
   let tx = 0;
+  const track = document.getElementById('carousel-slides');
   track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
   track.addEventListener('touchend', e => {
     const dx = e.changedTouches[0].clientX - tx;
