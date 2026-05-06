@@ -1166,41 +1166,6 @@
   resetTimer();
 })();
 
-/* ── ANIMATED COUNTERS ── */
-(function(){
-  // Auto-calculate total certifications from DATA
-  const certTotal = DATA.certs.reduce((sum, c) => {
-    const names = c.names.split(',').map(n => n.trim()).filter(Boolean);
-    // BLS "Entire Health Science Theory Classes" counts as 1
-    return sum + names.length;
-  }, 0);
-  const certEl = document.getElementById('cert-count');
-  if (certEl) certEl.dataset.target = certTotal;
-
-  const counters = document.querySelectorAll('.stat-num[data-target]');
-  let started = false;
-  function run() {
-    if (started) return; started = true;
-    counters.forEach(el => {
-      const target = +el.dataset.target;
-      const suffix = el.dataset.suffix || '';
-      const t0 = performance.now();
-      const dur = 1400;
-      function step(now) {
-        const p = Math.min((now-t0)/dur, 1);
-        const e = 1 - Math.pow(1-p, 3);
-        el.textContent = Math.floor(e*target) + (p===1 ? suffix : '');
-        if (p < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    });
-  }
-  const obs = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) { run(); obs.disconnect(); }
-  }, {threshold:0.3});
-  obs.observe(document.querySelector('.stats-band'));
-})();
-
 /* ── DATA ── */
 const DATA = {
   certs: [
@@ -1334,6 +1299,38 @@ const DATA = {
     {n:'William Jewell',u:'https://www.william.jewell.edu'},
   ],
 };
+
+/* ── ANIMATED COUNTERS ── */
+(function(){
+  const certTotal = DATA.certs.reduce((sum, c) => {
+    return sum + c.names.split(',').map(n => n.trim()).filter(Boolean).length;
+  }, 0);
+  const certEl = document.getElementById('cert-count');
+  if (certEl) certEl.dataset.target = certTotal;
+
+  const counters = document.querySelectorAll('.stat-num[data-target]');
+  let started = false;
+  function run() {
+    if (started) return; started = true;
+    counters.forEach(el => {
+      const target = +el.dataset.target;
+      const suffix = el.dataset.suffix || '';
+      const t0 = performance.now();
+      const dur = 1400;
+      function step(now) {
+        const p = Math.min((now-t0)/dur, 1);
+        const e = 1 - Math.pow(1-p, 3);
+        el.textContent = Math.floor(e*target) + (p===1 ? suffix : '');
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }
+  const obs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) { run(); obs.disconnect(); }
+  }, {threshold:0.3});
+  obs.observe(document.querySelector('.stats-band'));
+})();
 
 /* ── SEARCH INDEX ── */
 const idx = {};
