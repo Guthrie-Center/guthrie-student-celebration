@@ -40,7 +40,7 @@
   /* ── HERO CAROUSEL ── */
   .hero { position: relative; background: var(--blue-dark); overflow: hidden; }
 
-  .carousel { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; }
+  .carousel { position: relative; width: 100%; aspect-ratio: 16/9; max-height: 580px; overflow: hidden; }
   .carousel-slides {
     display: flex;
     height: 100%;
@@ -400,9 +400,11 @@
   @media (max-width: 680px) {
     .carousel { aspect-ratio: 16/9; }
     .hero-overlay { padding-bottom: 30px; }
-    .stats-band { padding: 0 16px; }
-    .stat { min-width: 90px; padding: 16px 10px; }
-    .stat-num { font-size: 28px; }
+    .stats-band { padding: 0 8px; }
+    .stats-inner { flex-wrap: nowrap; }
+    .stat { min-width: 0; flex: 1; padding: 14px 4px; }
+    .stat-num { font-size: 22px; }
+    .stat-label { font-size: 8px; letter-spacing: 0.06em; }
     .gallery-grid { grid-template-columns: repeat(2,1fr); }
     .gallery-grid .g-main { grid-column: span 2; }
     .main { padding: 32px 16px 60px; }
@@ -449,10 +451,11 @@
   </div>
 
   <div class="hero-overlay">
-    <p class="hero-eyebrow">Harold D. Guthrie CTE Center &nbsp;·&nbsp; Spring Branch ISD &nbsp;·&nbsp; 2025–2026</p>
+    <p class="hero-eyebrow">The Guthrie Center &nbsp;·&nbsp; Spring Branch ISD &nbsp;·&nbsp; 2025–2026</p>
     <img class="hero-logo"
-         src="https://guthriectecenter.com/wp-content/uploads/2022/08/Guthrie-Logo-White.png"
-         alt="The Guthrie Center" onerror="this.style.display='none'">
+         src="GuthrieAmbigram1000white.png"
+         alt="The Guthrie Center"
+         onerror="this.src='https://guthriectecenter.com/wp-content/uploads/2022/08/Guthrie-Logo-White.png'">
     <h1>Celebrating <em>Guthrie Excellence</em></h1>
     <p class="hero-sub">Honoring the students, teams, and achievements of our 2025–2026 award season</p>
     <div class="hero-rule"></div>
@@ -462,7 +465,7 @@
 <!-- ══ STATS BAND ── animated on scroll -->
 <div class="stats-band">
   <div class="stats-inner">
-    <div class="stat"><span class="stat-num" data-target="641">0</span><span class="stat-label">CTSO Members</span></div>
+    <div class="stat"><span class="stat-num" data-target="641">0</span><span class="stat-label">Certifications Earned</span></div>
     <div class="stat"><span class="stat-num" data-target="120">0</span><span class="stat-label">NTHS Members</span></div>
     <div class="stat"><span class="stat-num" data-target="100">0</span><span class="stat-label">FFA Members</span></div>
     <div class="stat"><span class="stat-num" data-target="7">0</span><span class="stat-label">Letter Jackets</span></div>
@@ -484,18 +487,7 @@
 <!-- ══ MAIN ══ -->
 <main class="main">
 
-  <!-- CEREMONY GALLERY — replace URLs with real photos; best wide shot goes in .g-main -->
-  <section class="gallery-section">
-    <span class="section-label">Award Ceremony</span>
-    <h2 class="section-title">A Day to <span>Remember</span></h2>
-    <div class="gallery-grid">
-      <div class="gallery-photo g-main placeholder" style="background-image:url('photos/gallery1.jpg')"></div>
-      <div class="gallery-photo placeholder" style="background-image:url('photos/gallery2.jpg')"></div>
-      <div class="gallery-photo placeholder" style="background-image:url('photos/gallery3.jpg')"></div>
-      <div class="gallery-photo placeholder" style="background-image:url('photos/gallery4.jpg')"></div>
-      <div class="gallery-photo placeholder" style="background-image:url('photos/gallery5.jpg')"></div>
-    </div>
-  </section>
+
 
   <!-- TOP HONORS -->
   <section>
@@ -610,8 +602,9 @@
 </main>
 
 <footer>
-  <img src="https://guthriectecenter.com/wp-content/uploads/2022/08/Guthrie-Logo-White.png"
-       alt="The Guthrie Center" onerror="this.style.display='none'">
+  <img src="GuthrieAmbigram1000white.png"
+       alt="The Guthrie Center"
+       onerror="this.src='https://guthriectecenter.com/wp-content/uploads/2022/08/Guthrie-Logo-White.png'">
   <p>The Guthrie Center &nbsp;·&nbsp; Spring Branch ISD &nbsp;·&nbsp; Houston, Texas</p>
   <p style="margin-top:5px;opacity:0.45;">Celebrating Guthrie Excellence &nbsp;·&nbsp; 2025–2026</p>
 </footer>
