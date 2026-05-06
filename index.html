@@ -647,13 +647,15 @@
     gap: 8px;
     margin-bottom: 32px;
     align-items: start;
+    grid-auto-rows: min-content;
   }
   .spotlight-card {
     background: var(--white); border: 1px solid var(--border);
-    border-radius: var(--r); padding: 16px 18px;
+    border-radius: var(--r); padding: 14px 16px;
     box-shadow: var(--shadow-sm);
     transition: transform 0.15s, box-shadow 0.15s;
     align-self: start;
+    height: fit-content;
   }
   .spotlight-card:hover {
     transform: translateY(-2px);
