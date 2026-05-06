@@ -57,7 +57,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom,rgba(0,20,80,0.22) 0%,rgba(0,20,80,0.52) 60%,rgba(0,20,80,0.72) 100%);
+    background: linear-gradient(to bottom,rgba(0,20,80,0.05) 0%,rgba(0,20,80,0.25) 55%,rgba(0,20,80,0.60) 100%);
   }
   .carousel-slide.placeholder {
     background-color: var(--blue-dark);
@@ -110,50 +110,62 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
-    padding: 0 24px 44px;
+    justify-content: space-between;
+    padding: 28px 24px 36px;
     pointer-events: none;
     text-align: center;
   }
+  .hero-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .hero-eyebrow {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
+    font-family: var(--font);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
     color: var(--gold-light);
     margin-bottom: 10px;
     opacity: 0;
     animation: fadeUp 0.7s 0.15s ease forwards;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.4);
   }
   .hero-logo {
     height: 60px; width: auto;
-    margin-bottom: 14px;
     opacity: 0;
     animation: fadeUp 0.7s 0.3s ease forwards;
     filter: brightness(0) invert(1);
   }
+  .hero-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .hero h1 {
-    font-size: clamp(32px,5.5vw,64px);
+    font-size: clamp(28px,4.5vw,58px);
     font-weight: 800;
     color: var(--white);
     line-height: 1.08;
     letter-spacing: -0.03em;
     opacity: 0;
     animation: fadeUp 0.7s 0.45s ease forwards;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.35);
   }
   .hero h1 em { font-style: normal; color: var(--gold-light); }
   .hero-sub {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 400;
-    color: rgba(255,255,255,0.72);
-    margin-top: 10px;
+    color: rgba(255,255,255,0.80);
+    margin-top: 8px;
     opacity: 0;
     animation: fadeUp 0.7s 0.6s ease forwards;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.3);
   }
   .hero-rule {
     width: 48px; height: 2px;
     background: var(--gold);
-    margin: 20px auto 0;
+    margin: 16px auto 0;
     opacity: 0;
     animation: fadeUp 0.7s 0.7s ease forwards;
   }
@@ -451,14 +463,18 @@
   </div>
 
   <div class="hero-overlay">
-    <p class="hero-eyebrow">The Guthrie Center &nbsp;·&nbsp; Spring Branch ISD &nbsp;·&nbsp; 2025–2026</p>
-    <img class="hero-logo"
-         src="GuthrieAmbigram1000white.png"
-         alt="The Guthrie Center"
-         onerror="this.src='https://guthriectecenter.com/wp-content/uploads/2022/08/Guthrie-Logo-White.png'">
-    <h1>Celebrating <em>Guthrie Excellence</em></h1>
-    <p class="hero-sub">Honoring the students, teams, and achievements of our 2025–2026 award season</p>
-    <div class="hero-rule"></div>
+    <div class="hero-top">
+      <p class="hero-eyebrow">The Guthrie Center</p>
+      <img class="hero-logo"
+           src="GuthrieAmbigram1000white.png"
+           alt="The Guthrie Center"
+           onerror="this.src='https://guthriectecenter.com/wp-content/uploads/2022/08/Guthrie-Logo-White.png'">
+    </div>
+    <div class="hero-bottom">
+      <h1>Celebrating <em>Guthrie Excellence</em></h1>
+      <p class="hero-sub">Honoring the students, teams, and achievements of our 2025–2026 award season</p>
+      <div class="hero-rule"></div>
+    </div>
   </div>
 </section>
 
@@ -466,11 +482,10 @@
 <div class="stats-band">
   <div class="stats-inner">
     <div class="stat"><span class="stat-num" data-target="641">0</span><span class="stat-label">Certifications Earned</span></div>
-    <div class="stat"><span class="stat-num" data-target="120">0</span><span class="stat-label">NTHS Members</span></div>
-    <div class="stat"><span class="stat-num" data-target="100">0</span><span class="stat-label">FFA Members</span></div>
+    <div class="stat"><span class="stat-num" data-target="257">0</span><span class="stat-label">CTSO Members</span></div>
     <div class="stat"><span class="stat-num" data-target="7">0</span><span class="stat-label">Letter Jackets</span></div>
     <div class="stat"><span class="stat-num" data-target="60" data-suffix="+">0</span><span class="stat-label">Colleges Accepted</span></div>
-    <div class="stat"><span class="stat-num" data-target="27" data-suffix="+">0</span><span class="stat-label">Scholarships</span></div>
+    <div class="stat"><span class="stat-num" data-target="30" data-suffix="+">0</span><span class="stat-label">Scholarships</span></div>
   </div>
 </div>
 
@@ -507,8 +522,8 @@
         <p class="card-category">National Champions</p>
         <p class="card-title">NJROTC Drone Team — National Champions</p>
         <ul class="name-list">
-          <li>Daniela Chazari</li><li>Jacqueline Garcia Sanchez</li><li>Joseph Cano</li>
-          <li>Kaelan Wang</li><li>Mariana Barrero Jaramillo</li><li>Mariela Esteban</li><li>Mia Rivera</li>
+          <li>Avery Meyers</li><li>Carsten Morford</li><li>Joohyuk Park</li>
+          <li>Ryenne Kohler</li><li>Sophia Marino</li><li>Vilius Bagdzevicius</li>
         </ul>
       </div>
       <div class="spotlight-card">
@@ -536,7 +551,7 @@
         <p class="card-category">Guthrie Letter Jackets</p>
         <p class="card-title">Letter Jacket Recipients</p>
         <ul class="name-list">
-          <li>Aiden Johnson</li><li>Kaelan Wang</li><li>Lydia Lane</li>
+          <li>Abigail Wilson</li><li>Aiden Johnson</li><li>Kaelan Wang</li><li>Lydia Lane</li>
           <li>Madison Stone</li><li>Morgan Stone</li><li>Sophia Marino</li><li>William Walsh</li>
         </ul>
       </div>
@@ -695,8 +710,8 @@ const DATA = {
     {icon:'💻',title:'CompTIA A+',names:'Sam Uong'},
     {icon:'🔒',title:'CompTIA Network+',names:'Arta Ghanbari,Braden Oliphant,Brady Bernier,Cormac Steranko,Dianne Lopez,Diego Lara,Duncan McCluskey,Emmanuel Oyenuga,Jason Hargrove,Jose Mejia,Najar Mohamed,Nolan Tran,Oliver Burk,Reagan Hewston,Ryan Scott,Ryleigh Dickerson'},
     {icon:'🛡️',title:'CompTIA Security+',names:'Arta Ghanbari,Brady Bernier,Dianne Lopez,Diego Lara,Jimmy Escobar,Najar Mohamed,Ryan Scott,Sam Uong'},
-    {icon:'🦷',title:'Dental Assisting',names:'Aydan Jolie Hagler,Kasra Jalali Ghombavani'},
-    {icon:'🐾',title:'Elanco Veterinary Medical Applications',names:'Abby Schroeter,Abigail Wilson,Camey Dunavin,Claire Bernadac,Elvis Zarco,Emily Valicek,Jake Duggan,McKinney Musgrave,Ophylia Luu,Quinn Hopper,Reese Tilton'},
+    {icon:'🦷',title:'Dental Assisting',names:'Aydan Jolie Hagler,Gabriela Amaya,Kasra Jalali Ghombavani'},
+    {icon:'🐾',title:'Elanco Veterinary Medical Applications',names:'Abby Schroeter,Abigail Wilson,Addison Young,Ann Lerner,Brian Mendoza,Camey Dunavin,Carson Graves,Charles Dina,Claire Bernadac,Elvis Zarco,Emerson Bryant,Emily Valicek,Enrique Ortega,Jake Duggan,Jules Houston,Lola Pooler,McKinney Musgrave,Michelle Stefanski,Ophylia Luu,Quinn Hopper,Raina Brooks,Reese Tilton,Susan Padilla,Sylvia Castaneda'},
     {icon:'🚁',title:'FAA Part 107 Drone License',names:'Ryenne Kohler'},
     {icon:'🔧',title:'Google IT Support Professional',names:'Abiel Tristan,Aiden Lane,Benton Denman,Cristopher Espitia,Eric Salgado,Micah Sotuyo,Rylan Garza,William Davison'},
     {icon:'⚡',title:'HCC Level 1 Commercial Electrical Helper & OSHA 30',names:'Aiden Patel,Aiden Wheeler,Alberto Simon-Chavez,Ana Rodriguez Carbajal,Angela B. Perez,Antonio Reynolds,Brayan Garcia Sanchez,Dulce M. Yanes,Eduviges Centeno,Emely Solis Galeno,Eric Michaud,Fardin Ansari,Fatima Gallegos,Fidel Arzate,Gabriela M. Perez,Guadalupe Rodriguez,Havid Castillo Alvarez,Hector Urbina Saucedo,Jaden Guzman,Javier Guillen Gomez,Jimy Diaz Caballero,Jocelyn L. Ramon,Josue Gudino Hernandez,Kevin Morales,Khristian Aguilar,Leonardo Mariscal,Logan Joffrion,Marcos Reyes Rodriguez,Maria Ostiguin-Campos,Mario Alvarado Quinonez,Mark Polanco,Matthew Medina,Milagros Sagal,Mynor Cano Garcia,N\'Korey Smith,Nelson Valeriano Rivera,Omar Cenobio Cenobio,Ricardo Maldonado,Ricardo Ortega,Samuel Hernandez,Santiago Perez,Sergio Andrade Paz,Stephen Hoover,Thalia Penton Del Monte,Wilmer Orellana Nataren'},
@@ -704,56 +719,64 @@ const DATA = {
     {icon:'🏗️',title:'OSHA 10',names:'Abraham Gomez,Adan Hernandez,Alan Isidoro,Alexis Arzate,Alexis Garcia,Alexis Saldana,Angel Hernandez,Brenden Moore,Brian Mendez,Bruce Andrade,Cameron Gilford,Christofer Figueroa-Anaya,Christopher Osorio,Cristian Lara Sandoval,Daniel Pinones,David Cabello Mena,Diego Cruz,Edbert Ramos Diaz,Edgar Martinez,Eduardo Garcia,Edy Garcia Cedillo,Elias Joya,Emilio Melgar,Esgar Sarmiento Martinez,Esvin Leiva Aguirre,Fernando De Leon,Gavin Trevino,Hector Aguilar Hernandez,Henry Monge,Isaac Sanchez,Jacob Garza,James Goodrich,Jason Luis-Rocha,Jayden Khemlani,Jerry Garcia,Jonathan Perez-Acuna,Joshua Hernandez,Joshwa Mendez,Juan Bueno,Juan Martinez,Pablo Garcia,Paulo Patino Hernandez,Rafael Francia,Ramon Roque-Godinez,Ramy Romero Fuentes,Ricardo Escamilla Bustillos,Ricardo Hernandez,Ryan Wu,Saul Gonzalez Valdez,Sebastian Vallejo,Victor Cedillo,Wilfredo Galeano Argueta'},
     {icon:'🩸',title:'Patient Care Technician & Phlebotomy Technician',names:'Alaina R. Moore,Alexa Guadarrama,Allison Benavidez Flores,Amelie Bustamante Castillo,Andre R. Dart,Ariana Ochoa,Arianna M. Giron,Ava M. Kennard,Brenna R. Laderer,Caroline R. Heinecke,Christopher A. Marquina,Clara M. Mello,Destiny Castellanos Martinez,Elizabeth A. Brauchle,Emely Solis Galeno,Emmie N. Hanvey,Erick I. Aguilar,Ian U. Arciniega,Isabella L. Lopez,Jocelyn Ramon,Karli N. De Anda,Leena J. Miller,Luke M. Mica,Maria C. Guevara,Maria Diaz,Mia A. Lopez Valdivia,Milagros Sagal,Paula M. Almaraz,Poleth D. Garcia,Rosalinda S Bravo,Ruben Orduna Cortes,Ruby Lopez-Millan,Siany Gonzalez Trana,Sindy Coreas,Sofia Flores,Sonia Ipina'},
     {icon:'💊',title:'Pharmacy Technician',names:'Camilo Chamorro,Emalie Huynh,Genesis Mejia,Gerald Anaya,Laura Gonzalez,Madison Dede,Mariana Medrano,Soraya Maram,Thomas Clark,Trung Nguyen'},
+    {icon:'🍔',title:'ServSafe Food Handlers',names:'Abdul Rahman Alzoubi,Abraham Bermudez Arias,Abraham Urdaneta Parra,Adehan Stubblefield,Alba Feliciano,Alejandro Rodriguez Valdes,Alessandra Garcia,Alex Ramirez,Alize Rodriguez,Alonzo Palmeros,Alyssa Marroquin,Ana Duron Cruz,Anderson Escobar Trigueros,Angel Cardona Garcia,Angel Sanchez Negrete,Angie Zaldivar Galdamez,Anthony Arteaga,Anthony Molina-Rodriguez,Arwen Hassan,Audrey Anderssen,Austin Doyle,Ayden Liles,Azula Ramirez,Carmen Nze Nzang,Chris Aranda,Cindy Martinez Lopez,Cristopher Carmona-Lucio,Damarion Henning,Declan Reid,Diana Martinez Caballero,Diego Amaro,Dulce Duarte Medina,Edder Lagunas,Ederson Diaz Coreas,Eduardo Barrera,Edwin Reyes Amaya,Elliott Torres,Elvin Ponce Orellana,Emerson Torres Castellon,Emily Martinez-Hernandez,Evelin Alonso Sanchez,Evoleth Rodriguez,Eyan Baez Rodriguez,Favian Godinez,Fidel Cornejo,Filipp Lapotko,Franklin Ruiz Arita,Grant Smith,Hazel Marquez-Carrillo,Irving Julian,Jack Leslie,Jaime Martinez,Jakob Midkiff Chandler,Jared Rasgado,Jayvion Wilson,Jeniffer Vigil,Jeremy Garcia-Cortez,Johan Lopez Pagoaga,Johana Zapeta,Jonas Vaughn,Jonathan Medina-Lopez,Jonathen Fuentes,Jose De La Cruz,Joshua Romero,Josue Lopez,Juanita Aguilar,Juelz LaChapel Hamilton,Justyce Patterson,Kathy Council-Barahona,Kayla Edwards,Kenneth Basurto,Kevin Hoang,Kimberly Carranza Bejarano,Landen Jenkins,Leiana Dixon,Leo Nava,Leonel Cartagena Ordonez,Leslie Hernandez,Leyda Vazquez-Silva,Lianna Marin,Logan Krajnovich,Logan Morales,Lucas Rubio,Luis Aguilar Chasoy,Luis Zetino Salmeron,Maria Tapia Conde,Melanie Vazquez-Azua,Michael Figueroa Serrano,Michael Guevara,Michelle Alvarez-Cruz,Moises Flores,Nashaly Salas Sanchez,Nia Barnett,Odaly Castro,Omar Clemente,Oriana Gutierrez Villalobos,Osiel Gutierrez,Pablo Mendez,Perla Rivas-Antunez,Sebastian James,Sierra Morales,Sofia Palmer,Steven Garcia Diaz,Taide Verdin,Vincent Detamore,Wilyer Jimenez Higuera,Yan Luna,Yasmin Ruiz,Yisel Castrejon,Yvanna Rebollo Perales,Zahir Gutierrez Lugo,Zanyia Pace,Zaryck Bogan'},
     {icon:'🍽️',title:'ServSafe Food Managers',names:'Alyssa Lopez,Amanda Rodriguez,Anthony Saravia,Avery Graham,Bien Rowel Almario,Carmen Guerra,Charles Podzemny,Christian Garcia,Christopher Ramirez,Cristian Torres,David Mata,Emmanuel Mojica,Estefania Prado,Francisco Olvera,Hunter Curry,Ivan Ruiz Torres,Jacob Anderson,Jayson Trevino,Kerlyn Meza Lainez,Leland Langlois,Michael Javaherian,Natan Matteoni,Marcos Poet Brown,Rodney Vidal,Sharon Ramirez'},
-    {icon:'🌸',title:'Texas Florists Knowledge-Based Certification (Group 1)',names:'Alixon Rivas,Helen Zukley,Jenna El Hosseiny,Kaleb Bernat,Kyle Gray,Luca Paullo,Mackenzie Hernandez-Alaffita,Mariah Pesina,Scarlett Glazner,Thomas Bowling'},
-    {icon:'🌸',title:'Texas Florists Knowledge-Based Certification (Group 2)',names:'Abigail Clark,Andrea Guillen,Astri Kimberli Tiul Jom,Elena Lonsford,Emma Rodriguez,Fatima Flores,Garrett Green,Heidi Urbina,Isabela Cabrera,Jason Lopez,Karina Reyes Caranza,Luke Sherrill,Mitzi Martinez,Seojin Park,Xunaxhi Luis,Yazmyn Villasana'},
+    {icon:'🌸',title:'Texas Florists Knowledge-Based Certification',names:'Abigail Clark,Alixon Rivas,Andrea Guillen,Astri Kimberli Tiul Jom,Elena Lonsford,Emma Rodriguez,Fatima Flores,Garrett Green,Heidi Urbina,Helen Zukley,Isabela Cabrera,Jason Lopez,Jenna El Hosseiny,Kaleb Bernat,Karina Reyes Caranza,Kyle Gray,Luca Paullo,Luke Sherrill,Mackenzie Hernandez-Alaffita,Mariah Pesina,Mitzi Martinez,Scarlett Glazner,Seojin Park,Thomas Bowling,Xunaxhi Luis,Yazmyn Villasana'},
   ],
   competitions: [
     {icon:'🏛️',title:'A4LE – Association for Learning Environments (National)',names:'Christian Reyes-Torres,Heyi Shen,Kensy Hernandez,Nicholas Massad,Nicolas Schoenhofer,William Walsh'},
-    {icon:'🌾',title:'Ag Advocacy',names:'Elizabeth Frew,Kinsley Binder,Lucy Esparza'},
+    {icon:'🌾',title:'Ag Advocacy',names:'Elizabeth Frew,Kinsley Binder,Lucy Esparza,Ross Mandery'},
     {icon:'💼',title:'Ag Sales',names:'Elizabeth Frew,Jordyn Howell,Kinsley Binder,Lucy Esparza'},
+    {icon:'🌱',title:'Agribusiness',names:'Emily Valicek'},
     {icon:'📡',title:'Ag Tech & Communications',names:'Claire Bernadac'},
-    {icon:'📰',title:'Area LDE Public Relations',names:'Abigail Clark,Elena Lonsford'},
-    {icon:'🎤',title:'Area LDE Skills Demonstration',names:'Luke Sherrill'},
-    {icon:'❓',title:'Chapter Quiz',names:'Emerson Bryant,Jina Park,Jina Suk,Kenzie Bates'},
-    {icon:'🦋',title:'Entomology',names:'Abigail Clark,Elena Lonsford,Jina Park,Wendy Gomez'},
-    {icon:'📊',title:'Farm Business Management',names:'Abigail Wilson,Claire Bernadac,Clark Ortega,Elizabeth Christy,Marcelo Suarez Prada'},
-    {icon:'🌺',title:'Floriculture',names:'Claire Bernadac,Kenzie Bates'},
-    {icon:'🐄',title:'Livestock Judging',names:'Addison Hudson,Ayla Klein,Bella Bernat,Kinsley Binder,Lucy Esparza,Samantha Hayes'},
-    {icon:'🥛',title:'Milk Quality',names:'Addison Young,Garrett Green,Luke Sherrill'},
+    {icon:'📰',title:'Area LDE Public Relations',names:'Abigail Clark,Elena Lonsford,Emily Valicek,Jordyn Howell'},
+    {icon:'🎤',title:'Area LDE Skills Demonstration',names:'Charlotte Moore,Luke Sherrill,Quinn Hopper'},
+    {icon:'❓',title:'Chapter Quiz',names:'Emerson Bryant,Jina Park,Kenzie Bates,Luis Roman Barrera'},
+    {icon:'🏛️',title:'CTSO Ambassador for FFA',names:'Claire Bernadac,Elise Bernadac'},
+    {icon:'🦋',title:'Entomology',names:'Abigail Clark,Elena Lonsford,Grace Smith,Jina Park,Natalie Enriquez,Quinn Hopper,Reese Tilton,Wendy Gomez'},
+    {icon:'📊',title:'Farm Business Management',names:'Abigail Wilson,Claire Bernadac,Clark Ortega,Elizabeth Christy,Luis Roman Barrera,Marcelo Suarez Prada'},
+    {icon:'🌺',title:'Floriculture',names:'Emily Valicek,Kenzie Bates,Lex Treadway'},
+    {icon:'🌿',title:'Greenhand Creed Speaking',names:'Mirah Tlass'},
+    {icon:'📝',title:'Greenhand Quiz',names:'Elizabeth Frew,Emily Torres,Ross Mandery,Sophia Martin'},
+    {icon:'💼',title:'Job Interview',names:'Claire Bernadac'},
+    {icon:'🐄',title:'Livestock Judging',names:'Addison Hudson,Ayla Klein,Bella Bernat,Kinsley Binder,Lucy Esparza,Samantha Hayes,Shayleigh Thomas'},
+    {icon:'🥛',title:'Milk Quality',names:'Addison Young,Charlotte Moore,Garrett Green,Luke Sherrill'},
     {icon:'📚',title:'NJROTC National Academic Exam',names:'Ashley Vallecillo Aguilar,Avery Meyers,Clark McWhorter,Irmenia Robau,Joohyuk Park,Joseph Cano,Karen Teyuca,Logan Mares,Mariela Esteban,Mia Rivera,Natan Orellana Diaz,Ryenne Kohler,Sasha Robau,Valeria Sabogal Parada,Vilius Bagdzevicius'},
-    {icon:'🚁',title:'NJROTC Drone Team – Coding, Airmanship, Communications',names:'Avery Meyers,Eileen Angel Sanchez,Joohyuk Park,Sophia Marino,Vilius Bagdzevicius'},
-    {icon:'🎖️',title:'NJROTC Competition Team',names:'Anthony Modesto,Camron Bogan,Daniela Chazari,Elihu Down,Guillermo Hernandez,Jacqueline Garcia Sanchez,Jaden Aviles,Joseph Cano,Kaelan Wang,Karla Osorio,Madison Griffin,Mariana Barrero Jaramillo,Mariela Esteban,Mason Davis,Mia Rivera,Robin Mero Sornoza'},
-    {icon:'🐔',title:'Poultry',names:'Ashley Panjoj,Elise Bernadac,Gage Schissler,Jules Houston,Vivienne Verret'},
+    {icon:'🚁',title:'NJROTC Drone Team – Coding, Airmanship, Communications',names:'Avery Meyers,Carsten Morford,Colin Canova,Corbin McCalmont,Joohyuk Park,Ryenne Kohler,Sophia Marino,Vilius Bagdzevicius'},
+    {icon:'🎖️',title:'NJROTC Competition Team',names:'Adolfo Tapia,Anthony Modesto,Ashley Vallecillo Aguilar,Avery Meyers,Carsten Morford,Clark McWhorter,Colin Rancoll Canova,Corbin McCalmont,Daniela Chazari,Eileen Angel Sanchez,Irmenia Robau,Joohyuk Park,Joseph Cano,Julie Goodrich,Kaelan Wang,Karen Teyuca,Karla Osorio,Logan Mares,Mariana Barrero Jaramillo,Mariela Esteban,Mason Davis,Melany Sanchez,Mia Rivera,Natan Orellana Diaz,Ryan McIntire,Ryenne Kohler,Sasha Robau,Sophia Marino,Sophia Rodriguez,Valeria Sabogal Parada,Vilius Bagdzevicius'},
     {icon:'🌿',title:'Plant Science',names:'Elise Bernadac'},
     {icon:'🚔',title:'Police Explorers Competition',names:'Giovanni Ramirez,Jadin Garcia'},
+    {icon:'🐔',title:'Poultry',names:'Ashley Panjoj,Elise Bernadac,Gage Schissler,Jules Houston,Vivienne Verret'},
     {icon:'📣',title:'Public Relations',names:'Abigail Clark,Elena Lonsford,Emily Valicek,Jordyn Howell'},
     {icon:'🎙️',title:'Public Speaker',names:'Claire Bernadac,Elise Bernadac,Emily Valicek'},
     {icon:'📻',title:'Radio Broadcasting',names:'Ashley Panjoj,Bella Bernat,Gage Schissler'},
+    {icon:'🎭',title:'Sr. Chapter Conducting',names:'Arabella Harris,Claire Bernadac,Elise Bernadac,Emerson Bryant,Jina Park,Lex Treadway,Shayleigh Thomas,Vivienne Verret'},
+    {icon:'🎙️',title:'Sr. Creed Speaking',names:'Emily Valicek'},
+    {icon:'🎤',title:'Sr. Skills Demonstration',names:'Charlotte Moore,Luke Sherrill,Quinn Hopper'},
     {icon:'✂️',title:'SkillsUSA Cosmetology',names:'Evelyn Archundia,Liliana Reyes,Malia Madrill,Mitzel Guerrero,Valeria Ortiz,Valerie Oliveros,Samantha Ortiz,Tatiana Reyes'},
     {icon:'👨‍🍳',title:'SkillsUSA Culinary',names:'Ayden Liles,Jayvion Wilson,Lydia Lane,Madison Stone,Morgan Stone,Sierra Morales,Vincent Detamore,Vincent McGuire'},
     {icon:'🎥',title:'SkillsUSA Filmmaking',names:'Alisa Hakalenko,Braelyn Bautista,Brighitte Gatica,Churchill Chong,Jose Del Pino Brizuela,Liam Brader,Luis Martinez,Mariam Khan,Mina Kaczenski,Sebastian Mendoza,Xavier Alexander'},
     {icon:'🩺',title:'SkillsUSA Health Science',names:'Ava Kennard,Caroline Heinecke,Guadalupe Rodriguez Esteban'},
     {icon:'🏛️',title:'TxA Architects',names:'Aaliyah Castillo,Andrew Davidow,Christian Reyes-Torres,Heyi Shen,Hudson Getty,Jonathan Ruiz,Julio Rivera,Kensy Hernandez,Mariam Pirela,Moises Hernandez-Campos,Nahomi Hernandez Velasquez,Nicholas Massad,Nickolas Rowland,Nicolas Schoenhofer,Rafael Cordero,Sakino Kitaoka,Sofia Perez,Wilbeicys Aguilar Castellanos,William Walsh'},
     {icon:'🐕',title:'Vet Science (Group 1)',names:'Arabella Harris,Margarita Miguel,Isabella Bentancur,Vicky Guillen'},
-    {icon:'🐕',title:'Vet Science (Group 2)',names:'Abby Schroeter,Addison Knape,Ashley Panjoj,Benton Byrd,Ophylia Luu,Raina Brooks,Sylvia Castaneda'},
+    {icon:'🐕',title:'Vet Science (Group 2)',names:'Abby Schroeter,Addison Knape,Benton Byrd,Claire Bernadac,Emerson Bryant,Ophylia Luu,Raina Brooks,Sylvia Castaneda'},
   ],
   leadership: [
-    {icon:'🌾',title:'FFA Officers',names:'Abigail Clark (President & Lake Houston Pres),Charlotte Moore,Claire Bernadac,Elise Bernadac,Emily Valicek,Gage Schissler,Kenzie Bates,Lola Pooler,Quinn Hopper'},
+    {icon:'🌾',title:'FFA Officers',names:'Abigail Clark (President & Lake Houston District Pres),Charlotte Moore,Claire Bernadac,Elise Bernadac,Emily Valicek,Gage Schissler,Kenzie Bates,Lola Pooler (FFA Ambassador),Quinn Hopper'},
     {icon:'🎖️',title:'NJROTC Leadership Team',names:'Adolfo Tapia Alvarado,Carsten Morford,Jane McWhorter,Joohyuk Park,Joseph Cano,Kaelan Wang,Ryan McIntire,Sophia Marino,Vilius Bagdzevicius'},
     {icon:'⭐',title:'NTHS Officers',names:'Brenna Laderer,Carsten Morford,Genesis Mejia,Sakino Kitaoka,Vilius Bagdzevicius'},
     {icon:'✂️',title:'SkillsUSA Cosmetology Officers',names:'Mitzel Guerrero,Samantha Ortiz,Tatiana Reyes'},
     {icon:'👨‍🍳',title:'SkillsUSA Culinary Officers',names:'Lydia Lane,Madison Stone,Morgan Stone'},
-    {icon:'🎥',title:'SkillsUSA Filmmaking Officers',names:'Sebastian Mendoza,Liam Brader,Alisa Hakalenko'},
+    {icon:'🎥',title:'SkillsUSA Filmmaking Officers',names:'Alice Hakalenko,Liam Brader,Sebastian Mendoza'},
     {icon:'🎓',title:'Tarleton Ag Business Cords',names:'Clark Ortega,Elizabeth Christy,Gage Schissler,Grace Smith,Kaylee Johnson,Kenzie Bates,Kyle Ingersoll,Natalie Enriquez,Shayleigh Thomas,William Dudley,Zoe Yan'},
     {icon:'💼',title:'Paid SBISD Interns',names:'Israel Martinez'},
-    {icon:'🏛️',title:'CTSO Ambassador for FFA',names:'Elise Bernadac'},
   ],
-  state:'Aaliyah Castillo,Abigail Clark,Alisa Hakalenko,Andrew Davidow,Christian Reyes-Torres,Churchill Chong,Elena Lonsford,Heyi Shen,Hudson Getty,Jazz Collymore,Jeremy Garcia-Cortez,Jonathan Ruiz,Jose Del Pino Brizuela,Julio Rivera,Kensy Hernandez,Lydia Lane,Madison Stone,Mariam Khan,Mariam Pirela,Michael Javerian,Mitzel Guerrero,Moises Hernandez-Campos,Morgan Stone,Nahomi Hernandez Velasquez,Nicholas Massad,Nickolas Rowland,Nicolas Schoenhofer,Rafael Cordero,Sakino Kitaoka,Samantha Ortiz,Sebastian Mendoza,Seojin Park,Sofia Perez,Tatiana Reyes,Vincent McGuire,Wendy Gomez,Wilbeicys Aguilar Castellanos,Xavier Alexander',
+  state:'Aaliyah Castillo,Abigail Clark,Abigail Wilson,Alisa Hakalenko,Andrew Davidow,Christian Reyes-Torres,Churchill Chong,Claire Bernadac,Elena Lonsford,Elizabeth Frew,Heyi Shen,Hudson Getty,James Fowler,Jazz Collymore,Jeremy Garcia-Cortez,Jonathan Ruiz,Jordyn Howell,Jose Del Pino Brizuela,Julio Rivera,Kensy Hernandez,Kinsley Binder,Lucy Esparza,Luis Roman Barrera,Lydia Lane,Madison Stone,Mariam Khan,Mariam Pirela,Michael Javerian,Mitzel Guerrero,Moises Hernandez-Campos,Morgan Stone,Nahomi Hernandez Velasquez,Nicholas Massad,Nickolas Rowland,Nicolas Schoenhofer,Rafael Cordero,Reese Tilton,Sakino Kitaoka,Samantha Ortiz,Sebastian Mendoza,Seojin Park,Sofia Perez,Tatiana Reyes,Vincent McGuire,Wilbeicys Aguilar Castellanos,Xavier Alexander',
   national:'Ashley Vallecillo Aguilar,Avery Meyers,Christian Reyes-Torres,Clark McWhorter,Colin Rancoll Canova,Corbin McCalmont,Heyi Shen,Irmenia Robau,Joohyuk Park,Julio Rivera,Karen Teyuca,Kensy Hernandez,Logan Mares,Natan Orellana Diaz,Nicholas Massad,Nicolas Schoenhofer,Ryenne Kohler,Sasha Robau,Sophia Marino,Valeria Sabogal Parada,Vilius Bagdzevicius,William Walsh,Xavier Alexander',
+  droneChamps:'Avery Meyers,Carsten Morford,Joohyuk Park,Ryenne Kohler,Sophia Marino,Vilius Bagdzevicius',
   nths:'Addison Teixeira,Andrew Davidow,Ariana Ochoa,Arianna Giron,Brenna Laderer,Carsten Morford,Elena Lonsford,Emily Mealey,Emily Valicek,Emmie Hanvey,Genesis Mejia,Hailey Shaffer,Jane McWhorter,Janelle Rodriguez,Jennifer Campo,Jina Park,Kensy Hernandez,Kimberly Flores Morales,Logan Joffrion,Abigail Clark,Mariam Pirela,Martha Garcia,Mia Robles Silva,Monserrat Mendoza-Figueroa,Nicolas Schoenhofer,Paula Almaraz,Paulina Cop Sanchez,Sakino Kitaoka,Sofia Perez,Trace Murphree,Vilius Bagdzevicius,Vincent McGuire,William Walsh',
   scholarships:'ACE,CITGO,CITGO Scholarship,Embry-Riddle Aeronautical University,Emerson College,Houston Livestock Show and Rodeo,Jacksonville University,Jason Roberts Scholarship,Louisiana Tech,Mary Boyce,Meadow Wood PTA Scholarship,Michael G. Meyers,Navy Academy Prep – Full Ride,Navy ROTC – Full Ride,Pratt,Reyes Simms Award,SCAD,School Art Auction,Spring Branch Education Foundation,Spring Branch Education Foundation Scholarship,University of Texas,University of Houston,University of Oklahoma,US Army ROTC Scholarship,Utah State University Merit Scholarship,We Go Public,Youth Auction',
-  colleges:'Auburn University,Auguste Escoffier School of Culinary Arts,Colorado University–Denver,Dallas College,Greensville University,Houston Christian University,Houston City College,Johnson and Wales University,Lone Star College,LSU,Montana State University,Northwestern University,Pratt Institute,Purdue University,Regis University,RPI,Sam Houston State University,SCAD,Sofia University St. Kliment Ohridski,Southern Adventist University,Southern Methodist University,Southwestern University,Stephen F. Austin University,Syracuse University,Texas A&M San Antonio,Texas A&M University,Texas Christian University,Texas State University,University of Arkansas,University of Connecticut,University of Houston,University of Houston Downtown,University of Mississippi,University of New Mexico,University of Oklahoma,University of Oregon,University of Pittsburgh,University of St. Thomas,University of Tennessee,UT Arlington,UT Austin,UT Dallas,UT El Paso,UT San Antonio,Utah State University,Virginia Tech,William Jewell',
+  colleges:'Auburn University,Auguste Escoffier School of Culinary Arts,Colorado University–Denver,Dallas College,Greensville University,Houston Christian University,Houston City College,Johnson and Wales University,Lone Star College,LSU,Mississippi State University,Montana State University,Northwestern University,Pratt Institute,Purdue University,Regis University,RPI,Sam Houston State University,SCAD,Sofia University St. Kliment Ohridski,Southern Adventist University,Southern Methodist University,Southwestern University,Stephen F. Austin University,Syracuse University,Texas A&M San Antonio,Texas A&M University,Texas Christian University,Texas State University,University of Arkansas,University of Charleston,University of Connecticut,University of Houston,University of Houston Downtown,University of Mississippi,University of New Mexico,University of Oklahoma,University of Oregon,University of Pittsburgh,University of St. Thomas,University of Tennessee,USC,UT Arlington,UT Austin,UT Dallas,UT El Paso,UT San Antonio,Utah State University,Virginia Tech,William Jewell,University of Wisconsin',
 };
 
 /* ── SEARCH INDEX ── */
@@ -769,13 +792,12 @@ DATA.competitions.forEach(c => c.names.split(',').forEach(n => add(n,'Competitio
 DATA.leadership.forEach(c => c.names.split(',').forEach(n => add(n,'Leadership',c.title,'tag-lead')));
 DATA.state.split(',').forEach(n => add(n,'State','State Competitor','tag-state'));
 DATA.national.split(',').forEach(n => add(n,'National','National Competitor','tag-national'));
-['Aiden Johnson','Kaelan Wang','Lydia Lane','Madison Stone','Morgan Stone','Sophia Marino','William Walsh']
+['Abigail Wilson','Aiden Johnson','Kaelan Wang','Lydia Lane','Madison Stone','Morgan Stone','Sophia Marino','William Walsh']
   .forEach(n => add(n,'Honor','Letter Jacket','tag-honor'));
 DATA.nths.split(',').forEach(n => add(n,'Honor','NTHS Cord','tag-honor'));
 ['Elizabeth Frew','Jordyn Howell','Kinsley Binder','Lucy Esparza']
   .forEach(n => add(n,'🏆 Champion','Ag Sales State Champ','tag-champ'));
-['Daniela Chazari','Jacqueline Garcia Sanchez','Joseph Cano','Kaelan Wang','Mariana Barrero Jaramillo','Mariela Esteban','Mia Rivera']
-  .forEach(n => add(n,'🇺🇸 Champion','NJROTC Drone Nat\'l Champ','tag-champ'));
+DATA.droneChamps.split(',').forEach(n => add(n,'🇺🇸 Champion','NJROTC Drone Nat\'l Champ','tag-champ'));
 
 const inp = document.getElementById('search-input');
 const panel = document.getElementById('search-results-panel');
