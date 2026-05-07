@@ -1543,7 +1543,7 @@ document.querySelectorAll('.team-photo').forEach(slot => {
 
   function scroll() {
     if (!paused) {
-      pos += 0.5;
+      pos += 0.8;
       if (pos >= totalW * 2) pos = totalW;
       track.style.transform = `translateX(-${pos}px)`;
     }
