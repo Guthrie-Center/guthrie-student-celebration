@@ -344,8 +344,8 @@
   /* Individual frame — 3:2 ratio */
   .film-frame {
     flex-shrink: 0;
-    width: 240px;
-    height: 160px;
+    width: 320px;
+    height: 213px;
     background: #1a1a1a;
     border: 2px solid #2a2a2a;
     border-radius: 2px;
@@ -1495,7 +1495,7 @@ document.querySelectorAll('.team-photo').forEach(slot => {
   const PHOTOS = Array.from({length:37}, (_,i) =>
     'photos/strip' + String(i+1).padStart(2,'0') + '.jpg'
   );
-  const FRAME_W = 244;
+  const FRAME_W = 324;
   const track = document.getElementById('filmstrip-track');
   const wrap  = document.getElementById('filmstrip-wrap');
 
