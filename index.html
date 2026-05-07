@@ -66,16 +66,16 @@
     .result-item { border-color: rgba(255,255,255,0.08); background: transparent; }
     .result-name { color: #ffffff !important; font-size: 15px; font-weight: 700; }
 
-    /* Tags in dark mode — solid backgrounds, white text */
-    .tag { color: #ffffff !important; }
-    .tag-cert     { background: #2a5298; color: #ffffff !important; border: none; }
-    .tag-compete  { background: #8a5200; color: #ffffff !important; border: none; }
-    .tag-lead     { background: #166534; color: #ffffff !important; border: none; }
-    .tag-honor    { background: #86198f; color: #ffffff !important; border: none; }
-    .tag-national { background: #854d0e; color: #ffffff !important; border: none; }
-    .tag-state    { background: #0c4a6e; color: #ffffff !important; border: none; }
-    .tag-champ    { background: #C9A84C; color: #0a1530 !important; font-weight: 700; border: none; }
-    .no-results   { color: rgba(255,255,255,0.6); }
+    /* Tags in dark mode — use ID for high specificity */
+    #search-results-panel .tag { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; padding: 3px 10px; border-radius: 20px; display: inline-block; }
+    #search-results-panel .tag-cert     { background: #2a5298; color: #ffffff; border: none; }
+    #search-results-panel .tag-compete  { background: #7c4700; color: #ffffff; border: none; }
+    #search-results-panel .tag-lead     { background: #14532d; color: #ffffff; border: none; }
+    #search-results-panel .tag-honor    { background: #701a75; color: #ffffff; border: none; }
+    #search-results-panel .tag-national { background: #78350f; color: #ffffff; border: none; }
+    #search-results-panel .tag-state    { background: #0c4a6e; color: #ffffff; border: none; }
+    #search-results-panel .tag-champ    { background: #C9A84C; color: #0a1530; font-weight: 700; border: none; }
+    .no-results { color: rgba(255,255,255,0.6); }
 
     /* Cards */
     .spotlight-card { background: #152550; border-color: rgba(100,150,255,0.15); }
@@ -538,7 +538,7 @@
     color: var(--ink); margin-bottom: 24px;
     padding-bottom: 16px; border-bottom: 2px solid var(--border);
   }
-  .section-title span { color: var(--blue); }
+  .section-title span { color: var(--gold); }
 
   /* ── GALLERY ── */
   .gallery-section { margin-bottom: 64px; }
