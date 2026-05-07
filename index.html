@@ -62,17 +62,19 @@
       background: #1f3568 !important;
       border-color: var(--blue-light) !important;
     }
-    #search-results-panel { background: #152550; border-color: rgba(100,150,255,0.2); }
-    .result-item { border-color: rgba(100,150,255,0.1); }
-    .result-name { color: var(--gold-light); }
+    #search-results-panel { background: #1a2d5a; border-color: rgba(100,150,255,0.2); }
+    .result-item { border-color: rgba(255,255,255,0.08); }
+    .result-name { color: var(--gold-light); font-size: 15px; }
 
-    /* Tags in dark mode */
-    .tag-cert     { background: rgba(74,122,212,0.2); color: #90b8f0; }
-    .tag-compete  { background: rgba(180,120,20,0.2); color: #d4a84a; }
-    .tag-lead     { background: rgba(20,140,60,0.2);  color: #6dcc90; }
-    .tag-honor    { background: rgba(160,40,120,0.2); color: #d880c0; }
-    .tag-national { background: rgba(180,140,0,0.2);  color: #d4aa50; border-color: #8a6820; }
-    .tag-state    { background: rgba(10,100,180,0.2); color: #70b0e8; }
+    /* Tags in dark mode — higher contrast */
+    .tag-cert     { background: rgba(74,122,212,0.35); color: #c0d8ff; border: 1px solid rgba(74,122,212,0.5); }
+    .tag-compete  { background: rgba(180,120,20,0.35);  color: #ffd890; border: 1px solid rgba(180,120,20,0.5); }
+    .tag-lead     { background: rgba(20,140,60,0.35);   color: #90e8b0; border: 1px solid rgba(20,140,60,0.5); }
+    .tag-honor    { background: rgba(160,40,120,0.35);  color: #f0a8e0; border: 1px solid rgba(160,40,120,0.5); }
+    .tag-national { background: rgba(180,140,0,0.35);   color: #ffe090; border: 1px solid rgba(180,140,0,0.5); }
+    .tag-state    { background: rgba(10,100,180,0.35);  color: #a0d0ff; border: 1px solid rgba(10,100,180,0.5); }
+    .tag-champ    { background: var(--gold); color: #0a1530; font-weight: 700; }
+    .no-results   { color: rgba(255,255,255,0.55); }
 
     /* Cards */
     .spotlight-card { background: #152550; border-color: rgba(100,150,255,0.15); }
