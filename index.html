@@ -1130,11 +1130,11 @@
 /* ── CAROUSEL (crossfade) ── */
 (function(){
   // Shuffle slides randomly on each load
-  const track = document.getElementById('carousel-slides');
-  const slideArr = Array.from(track.querySelectorAll('.carousel-slide'));
-  slideArr.sort(() => Math.random() - 0.5).forEach(s => track.appendChild(s));
+  const carouselTrack = document.getElementById('carousel-slides');
+  const slideArr = Array.from(carouselTrack.querySelectorAll('.carousel-slide'));
+  slideArr.sort(() => Math.random() - 0.5).forEach(s => carouselTrack.appendChild(s));
 
-  const slides = track.querySelectorAll('.carousel-slide');
+  const slides = carouselTrack.querySelectorAll('.carousel-slide');
   const dotsEl = document.getElementById('carousel-dots');
   const total = slides.length;
   let cur = 0, timer;
