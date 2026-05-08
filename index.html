@@ -1500,9 +1500,9 @@ document.querySelectorAll('.team-photo').forEach(slot => {
 
 /* ── FILM STRIP ── */
 (function(){
-  const PHOTOS = Array.from({length:37}, (_,i) =>
+  const PHOTOS = Array.from({length:46}, (_,i) =>
     'photos/strip' + String(i+1).padStart(2,'0') + '.jpg'
-  );
+  ).sort(() => Math.random() - 0.5);
   const FRAME_W = 324;
   const track = document.getElementById('filmstrip-track');
   const wrap  = document.getElementById('filmstrip-wrap');
